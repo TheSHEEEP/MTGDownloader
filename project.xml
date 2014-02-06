@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="MTG Downloader" package="eu.jdrabner.mtgdownloader" version="0.0.1" company="Jan Drabner" />
+	<app main="eu.jdrabner.mtgDownloader.DownloaderMain" path="Output" file="MTGDownloader" />
+
+    <!-- Window settings -->
+    <window background="#000000" fps="30" />
+    <section if="cpp">
+        <window antialiasing="4" width="1280" height="800"/>
+    </section>
+	
+	<source path="src" />
+	
+    <!-- Used libraries -->
+	<haxelib name="openfl" />
+    <haxelib name="svg" />
+    <haxelib name="htmlparser" />
+	
+    <!-- Assets -->
+    <assets path="assets/fonts" rename="fonts" />
+    <assets path="assets/svg" rename="svg" />
+	<icon path="assets/icon.svg" />
+	
+</project>
