@@ -1,0 +1,17 @@
+-main ApplicationMain 
+-lib openfl
+-lib openfl-native
+-lib hxlibc
+-lib svg
+-lib htmlparser
+-cp src
+-D tools=1.2.8
+-D lime_native
+-D no-compilation
+-D windows
+-D desktop
+-cp Output/windows/cpp/haxe
+-cpp Output/windows/cpp/obj
+--macro allowPackage("flash")
+--macro keep("eu.jdrabner.mtgDownloader.DownloaderMain")
+-D no-compilation

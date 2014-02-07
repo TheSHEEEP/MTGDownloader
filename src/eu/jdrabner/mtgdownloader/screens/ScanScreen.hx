@@ -12,14 +12,21 @@ import openfl.Assets;
 import haxe.htmlparser.HtmlDocument;
 import haxe.htmlparser.HtmlNodeElement;
 import eu.jdrabner.ui.SVGTextButton;
+import eu.jdrabner.ui.SVGCheckBox;
+import eu.jdrabner.ui.ScrollableContainer;
 import eu.jdrabner.mtgdownloader.download.FileDownloader;
+import eu.jdrabner.mtgdownloader.data.Database;
+import eu.jdrabner.mtgdownloader.data.Edition;
 
 class ScanScreen extends Sprite
 {
-    private var _bgColor     :Int;
-    private var _fontColor   :Int;
-    private var _relSize     :Float;
-    private var _font        :String;
+    private var _database     :Database;
+
+    private var _bgColor         :Int;
+    private var _fontColor       :Int;
+    private var _fontHoverColor  :Int;
+    private var _relSize         :Float;
+    private var _font            :String;
 
     private var _hint       :TextField;
     private var _allBtn     :SVGTextButton;
@@ -27,22 +34,31 @@ class ScanScreen extends Sprite
     private var _invertBtn  :SVGTextButton;
     private var _okBtn      :SVGTextButton;
 
+    private var _container     :ScrollableContainer;
+    private var _checkBoxes    :Map<SVGCheckBox, Edition>;
+
     /**
      * Constructor.
+     * @param  p_database  The database to fill.
      * @param  p_bgColor   The background color.
      * @param  p_fontColor The font color.
+     * @param  p_fontHoverColor The font color when hovering.
      * @param  p_relSize   The relative height of the screen, relative to stage height (0 .. 1).
      * @param  p_font      The font to use.
      */
-    public function new(p_bgColor :Int, p_fontColor :Int, p_relSize :Float, p_font :String)
+    public function new(p_database :Database, p_bgColor :Int, p_fontColor :Int, p_fontHoverColor :Int, p_relSize :Float, p_font :String)
     {
         super();
 
         // Remember values
+        _database = p_database;
         _bgColor = p_bgColor;
         _fontColor = p_fontColor;
+        _fontHoverColor = p_fontHoverColor;
         _relSize = p_relSize;
         _font = p_font;
+
+        _checkBoxes = new Map<SVGCheckBox, Edition>();
 
         addEventListener(Event.ADDED_TO_STAGE, init);
     }
@@ -60,7 +76,7 @@ class ScanScreen extends Sprite
         graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight * _relSize);
         graphics.endFill();
 
-        // Create buttons
+        // Create UI elements
         if (_allBtn == null)
         {
             // All
@@ -86,6 +102,10 @@ class ScanScreen extends Sprite
                 "OK", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
             addChild(_okBtn);
+
+            // Scrollable container
+            _container = new ScrollableContainer(0.84 * stage.stageWidth, stage.stageHeight * _relSize, 0.02, _fontColor, _fontHoverColor);
+            addChild(_container);
         }
         
         // Create hint
@@ -103,12 +123,12 @@ class ScanScreen extends Sprite
             _hint.selectable = false;
             _hint.mouseEnabled = false;
             _hint.defaultTextFormat = textFormat;
-            _hint.text = "Downloading edition information";
+            _hint.text = "Downloading edition information...";
             _hint.width = _hint.textWidth;
-            _hint.height = _hint.textHeight;
+            _hint.height = _hint.textHeight * 1.03;
             addChild(_hint);
         }
-        _hint.x = stage.stageWidth / 2 - _hint.width / 2;
+        _hint.x = 0.1 * stage.stageWidth;
         _hint.y = height / 2 - _hint.height / 2;
 
         // Position buttons
@@ -134,6 +154,13 @@ class ScanScreen extends Sprite
         downloader.startDownload();
     }
 
+    /**
+     * Returns the nth index of the passed string token.
+     * @param  p_string  The string to look in.
+     * @param  p_lookFor The token to look for.
+     * @param  p_n       The n.
+     * @return The nth index.
+     */
     private function nthIndexOf(p_string :String, p_lookFor :String, p_n :Int) :Int 
     {
         var lastIndex :Int = 0;
@@ -149,7 +176,7 @@ class ScanScreen extends Sprite
      */
     private function handleDownloadDone(p_event :Event) :Void 
     {
-        // Find all "a" inside the second table
+        // Find all "a" inside the second table, which contains all editions
         // We can't parse the whole site as it contains errors and freaks out any parser
         var downloader :FileDownloader = cast p_event.target;
         var data :String = downloader.getData();
@@ -159,14 +186,31 @@ class ScanScreen extends Sprite
         var xml :HtmlDocument = new HtmlDocument(dataStripped);
         var finds :Array<HtmlNodeElement> = xml.find("a");
 
-        // Trace each node with title and full link
+        // Construct every edition and add it to the database
+        // Also create a check box for it
         var title :String = "";
-        var link :String = "";
+        var shorty :String = "/bng/en.html";
+        var edition :Edition = null;
         for (element in finds)
         {
+            // Get the title and the shorty
             title = element.innerHTML;
-            link = "http://magiccards.info" + element.getAttribute("href");
-            trace(title + " : " + link);
+            shorty = element.getAttribute("href");
+            shorty = shorty.substr(1, shorty.length - 1 - 8); // 8 is "/en.html"
+
+            // Create the edition and add it to the database
+            edition = new Edition(title, shorty);
+            _database.addEdition(edition);
+
+            // Construct a checkbox for the edition
+            var checkbox :SVGCheckBox = new SVGCheckBox(Std.int(stage.stageWidth * 0.2), Std.int(stage.stageHeight * 0.06), 0.22, 
+                edition.getFullName(), _fontColor, _font, 
+                "svg/cb_grey_un_normal", "svg/cb_grey_un_hover", "svg/cb_grey_normal", "svg/cb_grey_hover");
+            _checkBoxes[checkbox] = edition;
+            _container.addObject(checkbox);
         }
+
+        // Now that we have all editions, construct the check boxes
+        _hint.visible = false;
     }
 }

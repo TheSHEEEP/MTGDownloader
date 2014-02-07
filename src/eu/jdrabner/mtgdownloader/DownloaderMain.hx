@@ -4,6 +4,7 @@ package eu.jdrabner.mtgDownloader;
 import flash.display.Sprite;
 import flash.events.Event;
 import eu.jdrabner.mtgdownloader.screens.ScanScreen;
+import eu.jdrabner.mtgdownloader.data.Database;
 
 /**
  * The main class of the MTg Downloader.
@@ -11,6 +12,8 @@ import eu.jdrabner.mtgdownloader.screens.ScanScreen;
  */
 class DownloaderMain extends Sprite
 {
+    private var _database     :Database;
+
     private var _titleBar     :TitleBar;
 
     private var _scanScreen     :ScanScreen;
@@ -22,6 +25,9 @@ class DownloaderMain extends Sprite
     {
         super();
 
+        // Create database
+        _database = new Database();
+        
         // Create title bar
         _titleBar = new TitleBar(0xFFFFFF, 0x504C4C, 0.2, 0.8, -0.09, "fonts/OpenSans-Bold.ttf");
         _titleBar.setTitleText("Select Editions");
@@ -29,7 +35,7 @@ class DownloaderMain extends Sprite
 
         // Create the screens
         // 1: Edition scanning
-        _scanScreen = new ScanScreen(0xE1E0D7, 0x8c8c8b, 0.8, "fonts/OpenSans-Semibold.ttf");
+        _scanScreen = new ScanScreen(_database, 0xE1E0D7, 0x8c8c8b, 0x1e1e1e, 0.8, "fonts/OpenSans-Semibold.ttf");
         addChild(_scanScreen);
 
         // 2: Settings
