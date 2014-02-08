@@ -3,6 +3,7 @@ package eu.jdrabner.mtgdownloader.screens;
 
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.MouseEvent;
 import flash.text.Font;
 import flash.text.TextField;
 import flash.text.TextFormat;
@@ -14,12 +15,15 @@ import haxe.htmlparser.HtmlNodeElement;
 import eu.jdrabner.ui.SVGTextButton;
 import eu.jdrabner.ui.SVGCheckBox;
 import eu.jdrabner.ui.ScrollableContainer;
+import eu.jdrabner.ui.ProgressBar;
 import eu.jdrabner.mtgdownloader.download.FileDownloader;
 import eu.jdrabner.mtgdownloader.data.Database;
 import eu.jdrabner.mtgdownloader.data.Edition;
 
 class ScanScreen extends Sprite
 {
+    public static inline var     DONE :String = "Done!";
+
     private var _database     :Database;
 
     private var _bgColor         :Int;
@@ -29,6 +33,7 @@ class ScanScreen extends Sprite
     private var _font            :String;
 
     private var _hint       :TextField;
+    private var _progress   :ProgressBar;
     private var _allBtn     :SVGTextButton;
     private var _noneBtn    :SVGTextButton;
     private var _invertBtn  :SVGTextButton;
@@ -83,29 +88,37 @@ class ScanScreen extends Sprite
             _allBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
                 "All", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
+            _allBtn.addEventListener(MouseEvent.CLICK, handleAllClick);
             addChild(_allBtn);
 
             // None
             _noneBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
                 "None", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
+            _noneBtn.addEventListener(MouseEvent.CLICK, handleNoneClick);
             addChild(_noneBtn);
 
             // Invert
             _invertBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
                 "Invert", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
+            _invertBtn.addEventListener(MouseEvent.CLICK, handleInvertClick);
             addChild(_invertBtn);
 
             // Ok
             _okBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
                 "OK", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
+            _okBtn.addEventListener(MouseEvent.CLICK, handleOkClick);
             addChild(_okBtn);
 
             // Scrollable container
             _container = new ScrollableContainer(0.84 * stage.stageWidth, stage.stageHeight * _relSize, 0.02, _fontColor, _fontHoverColor);
             addChild(_container);
+
+            // Progress bar
+            _progress = new ProgressBar(0.2 * stage.stageWidth, 0.05 * stage.stageHeight, _fontColor, 0x0000FF);
+            addChild(_progress);
         }
         
         // Create hint
@@ -130,6 +143,8 @@ class ScanScreen extends Sprite
         }
         _hint.x = 0.1 * stage.stageWidth;
         _hint.y = height / 2 - _hint.height / 2;
+        _progress.x = _hint.x + 0.5 * (_hint.width - _progress.width);
+        _progress.y = _hint.y + _hint.height;
 
         // Position buttons
         _allBtn.x = 0.85 * stage.stageWidth;
@@ -149,7 +164,7 @@ class ScanScreen extends Sprite
     public function go() :Void 
     {
         // var downloader :FileDownloader = new FileDownloader("file://C:/Coding/GitHubRepos/MTGDownloader/sitemap.html");
-        var downloader :FileDownloader = new FileDownloader("http://magiccards.info/sitemap.html");
+        var downloader :FileDownloader = new FileDownloader("http://magiccards.info/sitemap.html", _progress);
         downloader.addEventListener(FileDownloader.DOWNLOAD_DONE, handleDownloadDone);
         downloader.startDownload();
     }
@@ -204,13 +219,87 @@ class ScanScreen extends Sprite
 
             // Construct a checkbox for the edition
             var checkbox :SVGCheckBox = new SVGCheckBox(Std.int(stage.stageWidth * 0.2), Std.int(stage.stageHeight * 0.06), 0.22, 
-                edition.getFullName(), _fontColor, _font, 
+                edition.getFullName(), _fontColor, _fontHoverColor, _font, 
                 "svg/cb_grey_un_normal", "svg/cb_grey_un_hover", "svg/cb_grey_normal", "svg/cb_grey_hover");
+            checkbox.addEventListener(MouseEvent.CLICK, handleCheckBoxClicked);
             _checkBoxes[checkbox] = edition;
             _container.addObject(checkbox);
         }
 
         // Now that we have all editions, construct the check boxes
         _hint.visible = false;
+        _progress.visible = false;
+    }
+
+    /**
+     * Will take note of the edition to check/uncheck.
+     */
+    private function handleCheckBoxClicked(p_event :MouseEvent) :Void 
+    {
+        // Get the checkbox
+        var checkbox :SVGCheckBox = null;
+        if (Std.is(p_event.target, SVGCheckBox))
+        {
+            checkbox = cast p_event.target;
+        }
+        else
+        {
+            checkbox = cast p_event.target.parent;
+        }
+
+        // Apply checked/unchecked
+        _checkBoxes[checkbox].setShouldDownload(checkbox.getChecked());
+    }
+
+    /**
+     * Will mark all editions to be downloaded.
+     */
+    private function handleAllClick(p_event :MouseEvent) :Void 
+    {
+        for (cb in _checkBoxes.keys())
+        {
+            cb.setChecked(true);
+            _checkBoxes[cb].setShouldDownload(true);
+        }
+    }
+
+    /**
+     * Will mark all editions NOT to be downloaded.
+     */
+    private function handleNoneClick(p_event :MouseEvent) :Void 
+    {
+        for (cb in _checkBoxes.keys())
+        {
+            cb.setChecked(false);
+            _checkBoxes[cb].setShouldDownload(false);
+        }
+    }
+
+    /**
+     * Will invert the selection of each edition.
+     */
+    private function handleInvertClick(p_event :MouseEvent) :Void 
+    {
+        for (cb in _checkBoxes.keys())
+        {
+            cb.setChecked(!_checkBoxes[cb].getShouldDownload());
+            _checkBoxes[cb].setShouldDownload(!_checkBoxes[cb].getShouldDownload());
+        }
+    }
+
+    /**
+     * Will continue to the next step.
+     */
+    private function handleOkClick(p_event :MouseEvent) :Void 
+    {
+        // Only proceed if any edition is selected
+        for (edition in _checkBoxes)
+        {
+            if (edition.getShouldDownload())
+            {
+                dispatchEvent(new Event(DONE));
+                return;
+            }
+        }
     }
 }

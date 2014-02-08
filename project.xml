@@ -16,6 +16,7 @@
 	<haxelib name="openfl" />
     <haxelib name="svg" />
     <haxelib name="htmlparser" />
+    <haxelib name="tweenx" />
 	
     <!-- Assets -->
     <assets path="assets/fonts" rename="fonts" />

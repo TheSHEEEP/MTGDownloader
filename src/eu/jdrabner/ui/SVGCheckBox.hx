@@ -19,7 +19,9 @@ class SVGCheckBox extends Sprite
 {
     public var id :Int = -1;
 
-    private var _checked     :Bool = false;
+    private var _fontColor         :Int;
+    private var _fontHoverColor    :Int;
+    private var _checked           :Bool = false;
 
     private var _caption :TextField;
 
@@ -43,10 +45,14 @@ class SVGCheckBox extends Sprite
      * @param p_svgNormalName   The name of the SVG image (WITHOUT ".svg") for the checked normal state. 
      * @param p_svgHoverName    The name of the SVG image (WITHOUT ".svg") for the checked hover state. 
      * */
-    public function new(p_width :Int, p_height :Int, p_buttonSpace :Float, p_caption :String, p_fontColor :Int, p_font :String,
+    public function new(p_width :Int, p_height :Int, p_buttonSpace :Float, p_caption :String, 
+        p_fontColor :Int, p_fontHoverColor :Int, p_font :String,
         p_svgUnNormalName :String, p_svgUnHoverName :String, p_svgNormalName :String, p_svgHoverName :String)
     {
         super();
+
+        _fontColor = p_fontColor;
+        _fontHoverColor = p_fontHoverColor;
 
         // Mouse area
         _mouseArea = new Sprite();
@@ -186,6 +192,14 @@ class SVGCheckBox extends Sprite
         _unHoverLayer.visible = !_checked;
         _normalLayer.visible = false;
         _hoverLayer.visible = _checked;
+
+        // Change font color
+        var text :String = _caption.htmlText;
+        _caption.htmlText = "  ";
+        var textFormat :TextFormat = _caption.defaultTextFormat;
+        textFormat.color = _fontHoverColor;
+        _caption.htmlText = text;
+        _caption.setTextFormat(textFormat);
     }
 
     /**
@@ -197,6 +211,14 @@ class SVGCheckBox extends Sprite
         _unHoverLayer.visible = false;
         _normalLayer.visible = _checked;
         _hoverLayer.visible = false;
+
+        // Change font color
+        var text :String = _caption.htmlText;
+        _caption.htmlText = "  ";
+        var textFormat :TextFormat = _caption.defaultTextFormat;
+        textFormat.color = _fontColor;
+        _caption.htmlText = text;
+        _caption.setTextFormat(textFormat);
     }
 
 

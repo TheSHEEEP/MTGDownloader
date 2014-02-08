@@ -4,8 +4,9 @@
 -lib hxlibc
 -lib svg
 -lib htmlparser
+-lib tweenx
 -cp src
--D tools=1.2.8
+-D tools=1.2.9
 -D lime_native
 -D no-compilation
 -D windows

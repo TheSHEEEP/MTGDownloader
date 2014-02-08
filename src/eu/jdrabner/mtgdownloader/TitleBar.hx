@@ -88,6 +88,7 @@ class TitleBar extends Sprite
     public function setTitleText(p_text :String) :Void 
     {
         _title.text = p_text;
+        _title.width = _title.textWidth;
 
         if (stage != null)
         {

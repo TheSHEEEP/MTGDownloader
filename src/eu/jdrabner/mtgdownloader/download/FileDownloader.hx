@@ -10,24 +10,28 @@ import flash.events.IOErrorEvent;
 import flash.net.URLLoader;
 import flash.net.URLRequest;
 import haxe.io.Error;
+import eu.jdrabner.ui.ProgressBar;
 
 class FileDownloader extends flash.events.EventDispatcher
 {
     public static inline var         DOWNLOAD_DONE :String = "Download_Done";
 
-    private var _loader  :URLLoader;
-    private var _url     :String;
+    private var _loader      :URLLoader;
+    private var _url         :String;
+    private var _progressBar :ProgressBar;
 
     /**
      * Constructor.
      * @param  p_url The URL to download.
+     * @param  p_bar (Optional) The prograss bar to keep updated about the progress.
      */
-    public function new(p_url :String) 
+    public function new(p_url :String, p_bar :ProgressBar = null) 
     {
         super();
 
         _loader = new URLLoader();
         _url = p_url;
+        _progressBar = p_bar;
 
         configureListeners();
     }
@@ -69,6 +73,12 @@ class FileDownloader extends flash.events.EventDispatcher
     {
         trace("Done");
 
+        if (_progressBar != null)
+        {
+            _progressBar.update(1.0);
+            _progressBar = null;
+        }
+
         // Remove all listeners
         _loader.removeEventListener(Event.COMPLETE, completeHandler);
         _loader.removeEventListener(Event.OPEN, openHandler);
@@ -94,7 +104,11 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function progressHandler(p_event :ProgressEvent) :Void 
     {
-        trace("progressHandler loaded:" + p_event.bytesLoaded + " total: " + p_event.bytesTotal);
+        if (_progressBar != null)
+        {
+            _progressBar.update(p_event.bytesLoaded / p_event.bytesTotal);
+        }
+        // trace("progressHandler loaded:" + p_event.bytesLoaded + " total: " + p_event.bytesTotal);
     }
 
     /**

@@ -9,6 +9,7 @@ import flash.events.MouseEvent;
 import flash.events.Event;
 import flash.display.Shape;
 import flash.display.DisplayObject;
+import flash.geom.Point;
 
 /**
  * This container will automatically position elements that are given to it.
@@ -18,6 +19,7 @@ import flash.display.DisplayObject;
  */
 class ScrollableContainer extends Sprite
 {
+    private var _mask               :Sprite;
     private var _background         :Sprite;
     private var _scrollBar          :Sprite;
     private var _childContainer     :Sprite;
@@ -29,6 +31,7 @@ class ScrollableContainer extends Sprite
 
     private var _children     :Array<DisplayObject>;
     private var _dragging     :Bool = false;
+    private var _relPos       :Point;
 
     /**
      * Constructor.
@@ -45,7 +48,14 @@ class ScrollableContainer extends Sprite
         _margin = p_margin;
         _scrollBarColor = p_scrollBarColor;
         _scrollBarColorHover = p_scrollBarColorHover;
+        _relPos = new Point(0.0, 0.0);
 
+        // Create mask
+        _mask = new Sprite();
+        _mask.graphics.beginFill(0xFFFFFF, 1.0);
+        _mask.graphics.drawRect(0.0, 0.0, p_width, p_height);
+        _mask.graphics.endFill();
+        addChild(_mask);
 
         // Create background
         _background = new Sprite();
@@ -85,6 +95,10 @@ class ScrollableContainer extends Sprite
 
         stage.addEventListener(MouseEvent.MOUSE_UP, handleDragStop);
         stage.addEventListener(MouseEvent.MOUSE_MOVE, handleMouseMove);
+
+        // Apply mask
+        _mask.y = y;
+        this.mask = _mask;
     }
 
     /**
@@ -92,6 +106,10 @@ class ScrollableContainer extends Sprite
      */
     private function handleDragStart(p_event :MouseEvent) :Void 
     {
+        _dragging = true;
+
+        _relPos.x = p_event.localX;
+        _relPos.y = p_event.localY;
 
     }
 
@@ -100,7 +118,7 @@ class ScrollableContainer extends Sprite
      */
     private function handleDragStop(p_event :MouseEvent) :Void 
     {
-
+        _dragging = false;
     }
 
     /**
@@ -108,7 +126,29 @@ class ScrollableContainer extends Sprite
      */
     private function handleMouseMove(p_event :MouseEvent) :Void 
     {
+        if (_dragging)
+        {
+            // The mouse event's local coordinates are relative to something, so get the coordinates relative to the container
+            var localCoords :Point = globalToLocal(new Point(p_event.stageX, p_event.stageY));
 
+            // Set the bar's new Y
+            _scrollBar.y = localCoords.y - _relPos.y;
+
+            // Make sure the bar does not exceed the boundaries
+            if (_scrollBar.y < 0.0)
+            {
+                _scrollBar.y = 0.0;
+            }
+            else if ((_scrollBar.y + _scrollBar.height) > _background.height)
+            {
+                _scrollBar.y = _background.height - _scrollBar.height;
+            }
+
+            // Apply the bar's position to the container
+            var scrollFactor :Float = _scrollBar.y / (_background.height - _scrollBar.height);
+            var scrollRange :Float = _childContainer.height + stage.stageHeight * 0.02 - _background.height;
+            _childContainer.y = 0.0 - scrollRange * scrollFactor;
+        }
     }
 
     /**
