@@ -14,8 +14,8 @@ import haxe.htmlparser.HtmlDocument;
 import haxe.htmlparser.HtmlNodeElement;
 import eu.jdrabner.ui.SVGTextButton;
 import eu.jdrabner.ui.SVGCheckBox;
-import eu.jdrabner.ui.ScrollableContainer;
-import eu.jdrabner.ui.ProgressBar;
+import eu.jdrabner.ui.InputTextField;
+import eu.jdrabner.ui.RGBColor;
 import eu.jdrabner.mtgdownloader.download.FileDownloader;
 import eu.jdrabner.mtgdownloader.data.Database;
 import eu.jdrabner.mtgdownloader.data.Edition;
@@ -32,7 +32,9 @@ class SettingScreen extends Sprite
     private var _relSize         :Float;
     private var _font            :String;
 
-    private var _okBtn     :SVGTextButton;
+    private var _numParDownloads   :InputTextField;
+    private var _backBtn           :SVGTextButton;
+    private var _okBtn             :SVGTextButton;
 
     /**
      * Constructor.
@@ -74,7 +76,26 @@ class SettingScreen extends Sprite
         // Create UI elements
         if (_okBtn == null)
         {
-            // All
+            // Calculate colors for the input text fields
+            var bgColor :RGBColor = new RGBColor(_bgColor);
+            bgColor.add(0.2);
+            var bgBorderColor :RGBColor = new RGBColor(_bgColor);
+            bgBorderColor.add(-0.2);
+
+            // Number of parallel downloads
+            _numParDownloads = new InputTextField(Std.int(0.3 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.5, 
+                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_INT, _fontColor, _font, 
+                "Parallel Downloads:", "10");
+            addChild(_numParDownloads);
+
+            // Back
+            _backBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
+                "Back", _fontColor, _font,
+                "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
+            _backBtn.addEventListener(MouseEvent.CLICK, handleOkClick);
+            addChild(_backBtn);
+
+            // Ok
             _okBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
                 "Ok", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
@@ -82,10 +103,16 @@ class SettingScreen extends Sprite
             addChild(_okBtn);
         }
 
+        // Position settings
+        _numParDownloads.x = 0.03 * stage.stageWidth;
+        _numParDownloads.y = 0.03 * stage.stageHeight;
+
         // Position buttons
         _okBtn.x = 0.85 * stage.stageWidth;
+        _backBtn.x = 0.85 * stage.stageWidth;
 
         _okBtn.y = height - 0.05 * stage.stageHeight - _okBtn.height;
+        _backBtn.y = _okBtn.y - 0.05 * stage.stageHeight - _backBtn.height;
     }
 
     /**

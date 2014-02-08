@@ -10,6 +10,8 @@ import flash.text.TextFieldType;
 import flash.display.Sprite;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
+import flash.text.Font;
+import openfl.Assets;
 
 /**
  * A single-line input text field that has a fixed size and and a background. 
@@ -24,38 +26,61 @@ class InputTextField extends Sprite
     
     private var _background :Bitmap;
 
-    private var _text   :TextField;
+    private var _label   :TextField;
+    private var _text    :TextField;
 
     private var _type       :Int;
     private var _lastText   :String = "";
     
     /**
      * Constructor.
-     * @param  p_width         The width of the InputTextField.
+     * @param  p_width         The width of the InputTextField (total, label + input).
      * @param  p_height        The height of the InputTextField.
+     * @param  p_inputPart     The part of the width that is reserved for the input field. (0 .. 1)
      * @param  p_bgColor       The color of the text field's background. 
      * @param  p_bgColorBorder The color of the border of the text field's background.
      * @param  p_type          The type of input. This is used to check the input for wrong characters. 
      * @param  p_fontColor     The color of the font. 
      * @param  p_fontName      The name of the font to use. 
+     * @param  p_caption       The label text left of the inout field.
      * @param  p_defaultText   The starting text. Use htmlText at your own risk. 
      */
-    public function new(p_width :Int, p_height :Int, p_bgColor :Int, p_bgColorBorder :Int, 
-                        p_type :Int, p_fontColor :Int, p_fontName :String, p_defaultText :String = "")
+    public function new(p_width :Int, p_height :Int, p_inputPart :Float, p_bgColor :Int, p_bgColorBorder :Int, 
+                        p_type :Int, p_fontColor :Int, p_fontName :String, p_caption :String, p_defaultText :String = "")
     {
         super();
 
         _type = p_type;
 
+        // Create the label
+        var font :Font = Assets.getFont(p_fontName);
+        var textFormat :TextFormat = new TextFormat();
+        textFormat.bold = true;
+        textFormat.size = 0.5 * p_height;
+        textFormat.font = font.fontName;
+        textFormat.color = p_fontColor;
+
+        _label = new TextField();
+        _label.embedFonts = true;
+        _label.selectable = false;
+        _label.mouseEnabled = false;
+        _label.defaultTextFormat = textFormat;
+        _label.text = p_caption;
+        _label.width = (1.0 - p_inputPart - 0.05) * p_width;
+        _label.height = _label.textHeight;
+        _label.y = p_height / 2 - _label.height / 2;
+        addChild(_label);
+
         // Background
         var tempSprite :Sprite = new Sprite();
         tempSprite.graphics.lineStyle(3, p_bgColorBorder, 1.0);
         tempSprite.graphics.beginFill(p_bgColor, 1.0);
-        tempSprite.graphics.drawRect(0, 0, p_width, p_height);
+        tempSprite.graphics.drawRect(0, 0, p_inputPart * p_width, p_height);
         tempSprite.graphics.endFill();
-        var data :BitmapData = new BitmapData(p_width, p_height, true, 0xFFFFFFFF);
+        var data :BitmapData = new BitmapData(Std.int(p_inputPart * p_width), p_height, true, 0xFFFFFFFF);
         data.draw(tempSprite);
         _background = new Bitmap(data, PixelSnapping.NEVER, true);
+        _background.x = (1.0 - p_inputPart) * p_width;
         addChild(_background);
 
         // TextField
@@ -71,8 +96,8 @@ class InputTextField extends Sprite
         _text.text = "sdad";
         _text.height = _text.textHeight * 1.05;
         _text.text = p_defaultText;
-        _text.x = 0.04 * p_width;
-        _text.y = 0.04 * p_height;
+        _text.x = (1.0 - p_inputPart) * p_width + 0.04 * p_inputPart * p_width;
+        _text.y = 0.03 * p_height;
         #if flash
             _text.y -= 0.05 * p_height;
         #end
