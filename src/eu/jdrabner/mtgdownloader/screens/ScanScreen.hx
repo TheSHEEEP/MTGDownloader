@@ -218,7 +218,7 @@ class ScanScreen extends Sprite
             _database.addEdition(edition);
 
             // Construct a checkbox for the edition
-            var checkbox :SVGCheckBox = new SVGCheckBox(Std.int(stage.stageWidth * 0.2), Std.int(stage.stageHeight * 0.06), 0.22, 
+            var checkbox :SVGCheckBox = new SVGCheckBox(Std.int(stage.stageWidth * 0.2), Std.int(stage.stageHeight * 0.04), 0.18, 
                 edition.getFullName(), _fontColor, _fontHoverColor, _font, 
                 "svg/cb_grey_un_normal", "svg/cb_grey_un_hover", "svg/cb_grey_normal", "svg/cb_grey_hover");
             checkbox.addEventListener(MouseEvent.CLICK, handleCheckBoxClicked);

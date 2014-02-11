@@ -96,7 +96,7 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function openHandler(p_event :Event) :Void 
     {
-        trace("openHandler: " + p_event);
+        trace("openHandler: " + p_event.toString());
     }
 
     /**
@@ -116,7 +116,7 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function securityErrorHandler(p_event :SecurityErrorEvent) :Void 
     {
-        trace("securityErrorHandler: " + p_event);
+        trace("securityErrorHandler: " + p_event.text);
     }
 
     /**
@@ -124,7 +124,7 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function httpStatusHandler(p_event :HTTPStatusEvent) :Void 
     {
-        trace("httpStatusHandler: " + p_event);
+        trace("httpStatusHandler: " + p_event.toString());
     }
 
     /**
@@ -132,6 +132,6 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function ioErrorHandler(p_event :IOErrorEvent) :Void 
     {
-        trace("ioErrorHandler: " + p_event);
+        trace("ioErrorHandler: " + p_event.text);
     }
 }

@@ -1,0 +1,22 @@
+-main ApplicationMain 
+-lib openfl
+-lib openfl-html5-dom
+-lib svg
+-lib htmlparser
+-lib tweenx
+-cp src
+-D tools=1.2.9
+-D html5
+-D web
+-resource C:\Coding\GitHubRepos\MTGDownloader\assets\fonts\OpenSans-Bold.ttf.hash@__ASSET__fonts_opensans_bold_ttf
+-resource C:\Coding\GitHubRepos\MTGDownloader\assets\fonts\OpenSans-ExtraBold.ttf.hash@__ASSET__fonts_opensans_extrabold_ttf
+-resource C:\Coding\GitHubRepos\MTGDownloader\assets\fonts\OpenSans-ExtraBoldItalic.ttf.hash@__ASSET__fonts_opensans_extrabolditalic_ttf
+-resource C:\Coding\GitHubRepos\MTGDownloader\assets\fonts\OpenSans-Light.ttf.hash@__ASSET__fonts_opensans_light_ttf
+-resource C:\Coding\GitHubRepos\MTGDownloader\assets\fonts\OpenSans-Regular.ttf.hash@__ASSET__fonts_opensans_regular_ttf
+-resource C:\Coding\GitHubRepos\MTGDownloader\assets\fonts\OpenSans-Semibold.ttf.hash@__ASSET__fonts_opensans_semibold_ttf
+-js Output/html5/bin/MTGDownloader.js
+-cp Output/html5/haxe
+-D html5
+-D html
+--remap flash:flash
+-debug

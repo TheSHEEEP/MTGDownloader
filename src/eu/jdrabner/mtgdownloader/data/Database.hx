@@ -3,6 +3,9 @@ package eu.jdrabner.mtgdownloader.data;
 
 import flash.events.Event;
 
+/**
+ * This is the database that holds all editions.
+ */
 class Database extends flash.events.EventDispatcher
 {
     private var _editions     :Array<Edition>;

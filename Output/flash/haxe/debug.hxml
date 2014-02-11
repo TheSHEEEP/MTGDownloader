@@ -1,0 +1,15 @@
+-main ApplicationMain 
+-lib openfl
+-lib svg
+-lib htmlparser
+-lib tweenx
+-cp src
+-D tools=1.2.9
+-D web
+-swf-version 11.2
+-swf Output/flash/bin/MTGDownloader.swf
+-swf-header 800:600:30:000000
+-cp Output/flash/haxe
+#--remap nme:flash
+--no-inline
+-debug

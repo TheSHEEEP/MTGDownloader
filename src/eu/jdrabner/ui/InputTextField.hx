@@ -77,7 +77,7 @@ class InputTextField extends Sprite
         tempSprite.graphics.beginFill(p_bgColor, 1.0);
         tempSprite.graphics.drawRect(0, 0, p_inputPart * p_width, p_height);
         tempSprite.graphics.endFill();
-        var data :BitmapData = new BitmapData(Std.int(p_inputPart * p_width), p_height, true, 0xFFFFFFFF);
+        var data :BitmapData = new BitmapData(Std.int(p_inputPart * p_width) + 1, p_height + 1, true, 0xFFFFFFFF);
         data.draw(tempSprite);
         _background = new Bitmap(data, PixelSnapping.NEVER, true);
         _background.x = (1.0 - p_inputPart) * p_width;
@@ -92,7 +92,7 @@ class InputTextField extends Sprite
         _text.type = TextFieldType.INPUT;
         _text.setTextFormat(format);
         _text.defaultTextFormat = format;
-        _text.width = 0.92 * p_width;
+        _text.width = 0.92 * p_width * p_inputPart;
         _text.text = "sdad";
         _text.height = _text.textHeight * 1.05;
         _text.text = p_defaultText;
