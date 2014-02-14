@@ -54,6 +54,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("svg/btn_grey_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("svg/btn_grey_normal.svg", __ASSET__svg_btn_grey_normal_svg);
 		type.set ("svg/btn_grey_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("svg/btn_white_click.svg", __ASSET__svg_btn_white_click_svg);
+		type.set ("svg/btn_white_click.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("svg/btn_white_hover.svg", __ASSET__svg_btn_white_hover_svg);
+		type.set ("svg/btn_white_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("svg/btn_white_normal.svg", __ASSET__svg_btn_white_normal_svg);
+		type.set ("svg/btn_white_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("svg/cb_grey_hover.svg", __ASSET__svg_cb_grey_hover_svg);
 		type.set ("svg/cb_grey_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("svg/cb_grey_normal.svg", __ASSET__svg_cb_grey_normal_svg);
@@ -62,6 +68,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("svg/cb_grey_un_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		className.set ("svg/cb_grey_un_normal.svg", __ASSET__svg_cb_grey_un_normal_svg);
 		type.set ("svg/cb_grey_un_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("svg/cb_white_hover.svg", __ASSET__svg_cb_white_hover_svg);
+		type.set ("svg/cb_white_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("svg/cb_white_normal.svg", __ASSET__svg_cb_white_normal_svg);
+		type.set ("svg/cb_white_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("svg/cb_white_un_hover.svg", __ASSET__svg_cb_white_un_hover_svg);
+		type.set ("svg/cb_white_un_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		className.set ("svg/cb_white_un_normal.svg", __ASSET__svg_cb_white_un_normal_svg);
+		type.set ("svg/cb_white_un_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		
 		
 		#elseif html5
@@ -84,6 +98,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("svg/btn_grey_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		path.set ("svg/btn_grey_normal.svg", "svg/btn_grey_normal.svg");
 		type.set ("svg/btn_grey_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("svg/btn_white_click.svg", "svg/btn_white_click.svg");
+		type.set ("svg/btn_white_click.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("svg/btn_white_hover.svg", "svg/btn_white_hover.svg");
+		type.set ("svg/btn_white_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("svg/btn_white_normal.svg", "svg/btn_white_normal.svg");
+		type.set ("svg/btn_white_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		path.set ("svg/cb_grey_hover.svg", "svg/cb_grey_hover.svg");
 		type.set ("svg/cb_grey_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		path.set ("svg/cb_grey_normal.svg", "svg/cb_grey_normal.svg");
@@ -92,6 +112,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("svg/cb_grey_un_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		path.set ("svg/cb_grey_un_normal.svg", "svg/cb_grey_un_normal.svg");
 		type.set ("svg/cb_grey_un_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("svg/cb_white_hover.svg", "svg/cb_white_hover.svg");
+		type.set ("svg/cb_white_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("svg/cb_white_normal.svg", "svg/cb_white_normal.svg");
+		type.set ("svg/cb_white_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("svg/cb_white_un_hover.svg", "svg/cb_white_un_hover.svg");
+		type.set ("svg/cb_white_un_hover.svg", Reflect.field (AssetType, "text".toUpperCase ()));
+		path.set ("svg/cb_white_un_normal.svg", "svg/cb_white_un_normal.svg");
+		type.set ("svg/cb_white_un_normal.svg", Reflect.field (AssetType, "text".toUpperCase ()));
 		
 		
 		#else
@@ -544,10 +572,17 @@ class __ASSET__fonts_opensans_semibold_ttf extends flash.text.Font { }
 class __ASSET__svg_btn_grey_click_svg extends flash.utils.ByteArray { }
 class __ASSET__svg_btn_grey_hover_svg extends flash.utils.ByteArray { }
 class __ASSET__svg_btn_grey_normal_svg extends flash.utils.ByteArray { }
+class __ASSET__svg_btn_white_click_svg extends flash.utils.ByteArray { }
+class __ASSET__svg_btn_white_hover_svg extends flash.utils.ByteArray { }
+class __ASSET__svg_btn_white_normal_svg extends flash.utils.ByteArray { }
 class __ASSET__svg_cb_grey_hover_svg extends flash.utils.ByteArray { }
 class __ASSET__svg_cb_grey_normal_svg extends flash.utils.ByteArray { }
 class __ASSET__svg_cb_grey_un_hover_svg extends flash.utils.ByteArray { }
 class __ASSET__svg_cb_grey_un_normal_svg extends flash.utils.ByteArray { }
+class __ASSET__svg_cb_white_hover_svg extends flash.utils.ByteArray { }
+class __ASSET__svg_cb_white_normal_svg extends flash.utils.ByteArray { }
+class __ASSET__svg_cb_white_un_hover_svg extends flash.utils.ByteArray { }
+class __ASSET__svg_cb_white_un_normal_svg extends flash.utils.ByteArray { }
 
 
 #elseif html5
@@ -558,6 +593,13 @@ class __ASSET__fonts_opensans_extrabolditalic_ttf extends flash.text.Font { }
 class __ASSET__fonts_opensans_light_ttf extends flash.text.Font { }
 class __ASSET__fonts_opensans_regular_ttf extends flash.text.Font { }
 class __ASSET__fonts_opensans_semibold_ttf extends flash.text.Font { }
+
+
+
+
+
+
+
 
 
 

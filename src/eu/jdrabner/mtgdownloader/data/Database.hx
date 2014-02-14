@@ -28,4 +28,21 @@ class Database extends flash.events.EventDispatcher
         _editions.push(p_edition);
     }
 
+    /**
+     * Will look through all editions and return those that should be downloaded.
+     * @return The editions to download.
+     */
+    public function getEditionsToDownload() :Array<Edition>
+    {
+        var result :Array<Edition> = new Array<Edition>();
+        for (edition in _editions)
+        {
+            if (edition.getShouldDownload())
+            {
+                result.push(edition);
+            }
+        }
+        return result;
+    }
+
 }

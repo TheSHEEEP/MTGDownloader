@@ -139,14 +139,19 @@ class DownloadScreen extends Sprite
     }
 
     /**
-     * Download the site that holds the information about all editions.
+     * Start downloading all editions.
      */
     public function go() :Void 
     {
-        trace("Go!");
-        // var downloader :FileDownloader = new FileDownloader("http://magiccards.info/sitemap.html", _progress);
-        // downloader.addEventListener(FileDownloader.DOWNLOAD_DONE, handleDownloadDone);
-        // downloader.startDownload();
+        // First, start downloading all editions
+        var editions :Array<Edition> = _database.getEditionsToDownload();
+        for (edition in editions)
+        {
+            // TODO: here
+            // Create download display
+            // Create download job
+            // Listen to the download
+        }
     }
 
     /**
