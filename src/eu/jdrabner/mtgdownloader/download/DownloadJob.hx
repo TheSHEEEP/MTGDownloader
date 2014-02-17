@@ -1,6 +1,8 @@
 
 package eu.jdrabner.mtgdownloader.download;
 
+import flash.events.EventDispatcher;
+import flash.events.Event;
 import eu.jdrabner.ui.ProgressBar;
 import eu.jdrabner.mtgdownloader.data.Card;
 import eu.jdrabner.mtgdownloader.data.Edition;
@@ -8,8 +10,10 @@ import eu.jdrabner.mtgdownloader.data.Edition;
 /**
  * This class manages one download job, including the whole download and file creation.
  */
-class DownloadJob 
+class DownloadJob extends EventDispatcher 
 {
+    public static inline var     DONE :String = "Done!";
+
     private var _isCard       :Bool = false;
     private var _card         :Card;
     private var _edition      :Edition;
@@ -43,6 +47,22 @@ class DownloadJob
 
         // Set progress bar
         setProgressBar(p_bar);
+
+        // Initialize the downloader
+        var url :String = "http://magiccards.info/";
+        if (_isCard)
+        {
+            url += "scans/en/";
+            url += _card.getEdition().getShortName();
+            url += "/" + _card.getIndex() + ".jpg";
+        }
+        else
+        {
+            url += _edition.getShortName();
+            url += "/en.html";
+        }
+        _downloader = new FileDownloader(url, _progressBar);
+        _downloader.addEventListener(FileDownloader.DOWNLOAD_DONE, handleDownloadDone);
     }
 
     /**
@@ -50,7 +70,7 @@ class DownloadJob
      */
     public function getFullDescription() :String
     {
-        return "Hello".
+        return "Hello";
     }
 
     /**
@@ -62,6 +82,39 @@ class DownloadJob
         {
             _progressBar = p_bar;
             _progressBar.update(0.0);
+            _downloader.setProgressBar(_progressBar);
         }
+    }
+
+    /**
+     * @return The source of the download. Either an Edition or a Card.
+     */
+    public function getSource() :Dynamic
+    {
+        if (_isCard) 
+        {
+            return _card;
+        }
+        else
+        {
+            return _edition;
+        } 
+        return null;
+    }
+
+    /**
+     * @return The data of the download.
+     */
+    public function getData() :Dynamic
+    {
+        return _downloader.getData();
+    }
+
+    /**
+     * Will notify all listeners of the finished download.
+     */
+    private function handleDownloadDone(p_event :Event) :Void 
+    {
+        dispatchEvent(new Event(DONE));
     }
 }

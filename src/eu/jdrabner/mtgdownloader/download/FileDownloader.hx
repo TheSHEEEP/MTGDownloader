@@ -50,6 +50,14 @@ class FileDownloader extends flash.events.EventDispatcher
     }
 
     /**
+     * @param p_bar :ProgressBar The new progress bar the downloader will update.
+     */
+    public function setProgressBar(p_bar :ProgressBar) :Void 
+    {
+        _progressBar = p_bar;
+    }
+
+    /**
      * Starts the download.
      */
     public function startDownload() :Void 

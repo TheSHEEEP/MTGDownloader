@@ -16,9 +16,14 @@ import eu.jdrabner.ui.SVGTextButton;
 import eu.jdrabner.ui.SVGCheckBox;
 import eu.jdrabner.ui.ScrollableContainer;
 import eu.jdrabner.ui.ProgressBar;
+import eu.jdrabner.ui.RGBColor;
 import eu.jdrabner.mtgdownloader.download.FileDownloader;
+import eu.jdrabner.mtgdownloader.download.DownloadJob;
+import eu.jdrabner.mtgdownloader.download.DownloadSettings;
+import eu.jdrabner.mtgdownloader.download.DownloadDisplay;
 import eu.jdrabner.mtgdownloader.data.Database;
 import eu.jdrabner.mtgdownloader.data.Edition;
+import eu.jdrabner.mtgdownloader.data.Card;
 
 /**
  * This screen is responsible for all the downloads.
@@ -39,6 +44,9 @@ class DownloadScreen extends Sprite
     private var _editionsProgress :TextField;
     private var _cardsProgress    :TextField;
     private var _container        :ScrollableContainer;
+
+    private var _displays             :Array<DownloadDisplay>;
+    private var _waitingDownloads     :Array<Dynamic>;
 
     private var _backBtn          :SVGTextButton;
 
@@ -62,6 +70,9 @@ class DownloadScreen extends Sprite
         _fontHoverColor = p_fontHoverColor;
         _relSize = p_relSize;
         _font = p_font;
+
+        _displays = new Array<DownloadDisplay>();
+        _waitingDownloads = new Array<Dynamic>();
 
         addEventListener(Event.ADDED_TO_STAGE, init);
     }
@@ -147,58 +158,85 @@ class DownloadScreen extends Sprite
         var editions :Array<Edition> = _database.getEditionsToDownload();
         for (edition in editions)
         {
-            // TODO: here
+            addDownload(edition);
+        }
+    }
+
+    /**
+     * Will add a download.
+     * @param p_edition The Edition or Card to download.
+     */
+    private function addDownload(p_source :Dynamic) :Void 
+    {
+        // Create download job
+        var job :DownloadJob = new DownloadJob(p_source);
+        job.addEventListener(DownloadJob.DONE, handleJobDone);
+
+        // Try recycling an existing display
+        for (display in _displays)
+        {
+            // Re-use an idle display
+            if (display.isIdle())
+            {
+                display.setDownloadJob(job);
+                return;
+            }
+        }
+
+        // Try creating a new display
+        if (_container.getNumObjects() <= DownloadSettings.numParallelDownloads)
+        {
             // Create download display
-            // Create download job
-            // Listen to the download
+            var color :RGBColor = RGBColor(_fontColor);
+            color.add(0.2);
+            var display :DownloadDisplay = 
+                new DownloadDisplay(0.2 * stage.stageWidth, 0.05 * stage.stageHeight, _font, _fontColor, color.toInt(), job);
+
+            // Add it
+            _container.addObject(display);
+            _displays.push(display);
+        }
+        else
+        {
+            // Add this job to the waiting queue
+            _waitingDownloads.push(p_source);
         }
     }
 
     /**
-     * Returns the nth index of the passed string token.
-     * @param  p_string  The string to look in.
-     * @param  p_lookFor The token to look for.
-     * @param  p_n       The n.
-     * @return The nth index.
+     * Will handle completed downloads of an edition or a card.
      */
-    private function nthIndexOf(p_string :String, p_lookFor :String, p_n :Int) :Int 
+    private function handleJobDone(p_event :Event) :Void 
     {
-        var lastIndex :Int = 0;
-        for (count in 0 ... p_n)
+        var job :DownloadJob = cast p_event.target;
+        job.removeEventListener(DownloadJob.DONE, handleJobDone);
+
+        // If this was an edition, parse the HTML
+        if (Std.is(job.getSource(), Edition))
         {
-            lastIndex = p_string.indexOf(p_lookFor, lastIndex + p_lookFor.length);
+            // Let the edition read the HTML
+            var edition :Edition = cast job.getSource();
+            edition.readCardsFromEditionHtml(job.getData());
+
+            // Start a download for each card
+            for (card ... edition.getCards())
+            {
+                addDownload(card);
+            }
         }
-        return lastIndex;
-    }
-
-    /**
-     * Will parse the downloaded HTML file to get all editions.
-     */
-    private function handleDownloadDone(p_event :Event) :Void 
-    {
-        // Find all "a" inside the second table, which contains all editions
-        // We can't parse the whole site as it contains errors and freaks out any parser
-        var downloader :FileDownloader = cast p_event.target;
-        var data :String = downloader.getData();
-        var bodyIndex :Int = nthIndexOf(data, "<table", 2);
-        var bodyEndIndex: Int = nthIndexOf(data, "</table>", 2);
-        var dataStripped :String = data.substr(bodyIndex, bodyEndIndex - bodyIndex + 8);
-        var xml :HtmlDocument = new HtmlDocument(dataStripped);
-        var finds :Array<HtmlNodeElement> = xml.find("a");
-
-        // Construct every edition and add it to the database
-        // Also create a check box for it
-        var title :String = "";
-        var shorty :String = "/bng/en.html";
-        var edition :Edition = null;
-        for (element in finds)
+        // Otherwise, store the card
+        else
         {
-            // Get the title and the shorty
-            title = element.innerHTML;
-            shorty = element.getAttribute("href");
-            shorty = shorty.substr(1, shorty.length - 1 - 8); // 8 is "/en.html"
+            var card :Card = cast job.getSource();
+            trace("Now download card: " + card.getFullName());
+        }
 
-            // _container.addObject(checkbox);
+        // If we have waiting downloads, add one of these
+        if (_waitingDownloads.length > 0)
+        {
+            var source :Dynamic = _waitingDownloads[1];
+            _waitingDownloads.splice(0, 1);
+            addDownload(source);
         }
     }
 

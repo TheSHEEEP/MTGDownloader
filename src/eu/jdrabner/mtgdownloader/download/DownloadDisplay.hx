@@ -8,6 +8,7 @@ import flash.text.TextFormat;
 import flash.text.TextField;
 import flash.text.Font;
 import openfl.Assets;
+import tweenx909.TweenX;
 import eu.jdrabner.ui.ProgressBar;
 import eu.jdrabner.mtgdownloader.download.FileDownloader;
 import eu.jdrabner.mtgdownloader.download.DownloadSettings;
@@ -22,6 +23,8 @@ class DownloadDisplay extends Sprite
     private var _barFillColor      :Int;
     private var _targetWidth       :Float;
     private var _targetHeight      :Float;
+
+    private var _downloading     :Bool = false;
 
     private var _label         :TextField;
     private var _progressBar   :ProgressBar;
@@ -100,13 +103,14 @@ class DownloadDisplay extends Sprite
         // Unregister old one
         if (_job != null)
         {
-
+            _job.removeEventListener(DownloadJob.DONE, handleJobDone);
         }
 
         // Register new job
         if (p_job != null)
         {
             _job = p_job;
+            _job.addEventListener(DownloadJob.DONE, handleJobDone);
             if (_progressBar != null)
             {
                 _job.setProgressBar(_progressBar);
@@ -139,6 +143,34 @@ class DownloadDisplay extends Sprite
             _label.x = _targetWidth / 2 - _label.width / 2;
             _label.y = 0.05 * _targetHeight;
         }
+    }
+
+    /**
+     * Will take note of the finished download.
+     */
+    private function handleJobDone(p_event :Event) :Void 
+    {
+        var job :DownloadJob = cast p_event.target;
+        job.removeEventListener(DownloadJob.DONE, handleJobDone);
+        
+        // Wait 0.25 seconds before setting the display to idle (so that the user can see 100% progress bar)
+        TweenX.to(this, {alpha : 1.0} ).time(0.25).onFinish(setIsIdle);
+    }
+
+    /**
+     * @param p_idle If this display will count as idle or not.
+     */
+    public function setIsIdle(p_idle :Bool = true) :Void 
+    {
+        _downloading = !p_idle;
+    }
+
+    /**
+     * @return True if this download display can currently take a new download to display.
+     */
+    public function getIsIdle() :Bool 
+    {
+        return !_downloading;
     }
 
 }
