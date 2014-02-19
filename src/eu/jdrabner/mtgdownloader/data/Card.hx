@@ -17,6 +17,7 @@ class Card
     {
         _edition = p_edition;
         _index = p_index;
+        _fullName = p_name;
     } 
 
     /**
@@ -33,6 +34,14 @@ class Card
     public function getIndex() :Int 
     {
         return _index;
+    }
+
+    /**
+     * @return The full name of this card.
+     */
+    public function getFullName() :String
+    {
+        return _fullName;
     }
 
 }

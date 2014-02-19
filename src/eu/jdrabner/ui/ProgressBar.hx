@@ -24,7 +24,8 @@ class ProgressBar extends Sprite
     {
         super();
 
-        var borderWidth :Float = 0.03 * p_width;
+        var borderWidth :Float = 0.01 * p_width;
+        if (borderWidth < 1.0) borderWidth = 1.0;
 
         // Border
         _border = new Sprite();

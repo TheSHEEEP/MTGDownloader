@@ -29,9 +29,14 @@ class FileDownloader extends flash.events.EventDispatcher
     {
         super();
 
-        _loader = new URLLoader();
         _url = p_url;
         _progressBar = p_bar;
+        _loader = new URLLoader();
+        // If this is an image file, set the loaders mode accordingly
+        if (_url.indexOf(".jpg") != -1 || _url.indexOf(".png") != -1 || _url.indexOf(".png") != -1)
+        {
+            _loader.dataFormat = flash.net.URLLoaderDataFormat.BINARY;
+        }
 
         configureListeners();
     }
@@ -79,8 +84,6 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function completeHandler(p_event :Event) :Void 
     {
-        trace("Done");
-
         if (_progressBar != null)
         {
             _progressBar.update(1.0);
@@ -132,7 +135,7 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function httpStatusHandler(p_event :HTTPStatusEvent) :Void 
     {
-        trace("httpStatusHandler: " + p_event.toString());
+        // trace("httpStatusHandler: " + p_event.toString());
     }
 
     /**

@@ -102,6 +102,14 @@ class ScrollableContainer extends Sprite
     }
 
     /**
+     * @return The number of child objects.
+     */
+    public function getNumObjects() :Int 
+    {
+        return _children.length;
+    }
+
+    /**
      * Will start the dragging.
      */
     private function handleDragStart(p_event :MouseEvent) :Void 

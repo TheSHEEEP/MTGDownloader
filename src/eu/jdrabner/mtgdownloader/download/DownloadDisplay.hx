@@ -39,9 +39,11 @@ class DownloadDisplay extends Sprite
      * @param  p_fillColor The filling color of the progress bar.                                              
      * @param  p_job       The job to track. May be null to be set later.
      */
-    public function new(p_width :Float, p_height :Float, p_fontName :String, p_fontColor :Int, p_fillColor :Int
+    public function new(p_width :Float, p_height :Float, p_fontName :String, p_fontColor :Int, p_fillColor :Int,
                           p_job :DownloadJob = null)
     {
+        super();
+
         // Remember settings
         _targetWidth = p_width;
         _targetHeight = p_height;
@@ -91,7 +93,7 @@ class DownloadDisplay extends Sprite
         updateLabel();
 
         // Position progress bar
-        _progressBar.y = 0.55 * _targetHeight;
+        _progressBar.y = 0.68 * _targetHeight;
         
     }
     
@@ -138,9 +140,9 @@ class DownloadDisplay extends Sprite
                 _label.text = "  ";
             }
 
-            _label.width = _label.textWidth * 1.03;
+            _label.width = _targetWidth;
             _label.height = _label.textHeight * 1.03;
-            _label.x = _targetWidth / 2 - _label.width / 2;
+            _label.x = 0.0 - _label.textHeight * 0.03;
             _label.y = 0.05 * _targetHeight;
         }
     }
@@ -154,13 +156,18 @@ class DownloadDisplay extends Sprite
         job.removeEventListener(DownloadJob.DONE, handleJobDone);
         
         // Wait 0.25 seconds before setting the display to idle (so that the user can see 100% progress bar)
-        TweenX.to(this, {alpha : 1.0} ).time(0.25).onFinish(setIsIdle);
+        TweenX.to(this, {alpha : 1.0} ).time(0.25).onFinish(setIsIdleTrue);
+    }
+
+    private function setIsIdleTrue() :Void 
+    {
+        setIsIdle(true);
     }
 
     /**
      * @param p_idle If this display will count as idle or not.
      */
-    public function setIsIdle(p_idle :Bool = true) :Void 
+    public function setIsIdle(p_idle :Bool) :Void 
     {
         _downloading = !p_idle;
     }

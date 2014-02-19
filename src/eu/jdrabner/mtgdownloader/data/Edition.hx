@@ -2,6 +2,8 @@
 package eu.jdrabner.mtgdownloader.data;
 
 import flash.events.Event;
+import haxe.htmlparser.HtmlDocument;
+import haxe.htmlparser.HtmlNodeElement;
 
 class Edition extends flash.events.EventDispatcher
 {
@@ -96,26 +98,27 @@ class Edition extends flash.events.EventDispatcher
      */
     public function readCardsFromEditionHtml(p_html :String) :Void 
     {
-        // TODO: here
-        var bodyIndex :Int = nthIndexOf(p_html, "<table", 2);
-        var bodyEndIndex: Int = nthIndexOf(p_html, "</table>", 2);
-        var dataStripped :String = p_html.substr(bodyIndex, bodyEndIndex - bodyIndex + 8);
-        var xml :HtmlDocument = new HtmlDocument(dataStripped);
-        var finds :Array<HtmlNodeElement> = xml.find("a");
+        // We can parse the full HTML, it does not seem to contain errors.
+        var xml :HtmlDocument = new HtmlDocument(p_html);
+        // The cards are in .even and .odd rows
+        var rows :Array<HtmlNodeElement> = xml.find(".even, .odd");
 
-        // Construct every edition and add it to the database
-        // Also create a check box for it
-        var title :String = "";
-        var shorty :String = "/bng/en.html";
-        var edition :Edition = null;
-        for (element in finds)
+        // Parse each row to get the link to the card
+        var link :HtmlNodeElement = null;
+        var card :Card = null;
+        var index  :Int = 0;
+        var getIndex :EReg = ~/[0-9]+/;
+        for (element in rows)
         {
-            // Get the title and the shorty
-            title = element.innerHTML;
-            shorty = element.getAttribute("href");
-            shorty = shorty.substr(1, shorty.length - 1 - 8); // 8 is "/en.html"
+            link = element.find("a")[0];
 
-            // _container.addObject(checkbox);
+            // Get the index
+            getIndex.match(link.getAttribute("href"));
+            index = Std.parseInt(getIndex.matched(0));
+
+            // Create and add card
+            card  = new Card(this, index, link.innerHTML);
+            _cards.push(card);
         }
     }
 }

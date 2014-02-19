@@ -87,6 +87,36 @@ class RGBColor
     }
 
     /**
+     * Subtract another color from this color.
+     * @param  p_other Can be either an Int value (which will be converted to RGBColor), another RGBColor or 
+     *                 a Float value.
+     */
+    public function subtract(p_other :Dynamic) :Void
+    {
+        if (Std.is(p_other, RGBColor))
+        {
+            _r -= p_other._r;
+            _g -= p_other._g;
+            _b -= p_other._b;
+        }
+        else if (Std.is(p_other, Int))
+        {
+            var color :RGBColor = new RGBColor(p_other);
+            _r -= color._r;
+            _g -= color._g;
+            _b -= color._b;
+        }
+        else if (Std.is(p_other, Float))
+        {
+            _r -= p_other;
+            _g -= p_other;
+            _b -= p_other;
+        }
+
+        clamp();
+    }
+
+    /**
      * Will clamp the color values from 0 to 1.
      */
     private function clamp() :Void 

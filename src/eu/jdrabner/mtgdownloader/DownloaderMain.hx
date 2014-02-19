@@ -109,11 +109,19 @@ class DownloaderMain extends Sprite
     {
         TweenX.to(_settingScreen, {alpha : 0.0} ).time(0.8).ease(EaseX.quintIn).onFinish(hideScreen);
         _toHide = _settingScreen;
-        TweenX.to(_downloadScreen, {alpha : 1.0} ).time(0.8).ease(EaseX.quintIn);
+        TweenX.to(_downloadScreen, {alpha : 1.0} ).time(0.8).ease(EaseX.quintIn).onFinish(startDownloads);
         _downloadScreen.alpha = 0.0;
         _downloadScreen.visible = true;
 
         _titleBar.setTitleText("Downloading...");
+    }
+
+    /**
+     * Will start the download screen.
+     */
+    private function startDownloads() :Void 
+    {
+        _downloadScreen.go();
     }
 
     /**

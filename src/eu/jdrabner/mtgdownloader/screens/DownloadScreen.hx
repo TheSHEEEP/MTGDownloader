@@ -4,11 +4,17 @@ package eu.jdrabner.mtgdownloader.screens;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.events.TimerEvent;
 import flash.text.Font;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.net.URLRequest;
 import flash.Lib;
+import flash.utils.Timer;
+import flash.utils.ByteArray;
+import sys.io.File;
+import sys.io.FileOutput;
+import sys.FileSystem;
 import openfl.Assets;
 import haxe.htmlparser.HtmlDocument;
 import haxe.htmlparser.HtmlNodeElement;
@@ -41,6 +47,10 @@ class DownloadScreen extends Sprite
     private var _relSize         :Float;
     private var _font            :String;
 
+    private var _numEditionsTotal :Int = 0;
+    private var _numEditionsDL    :Int = 0;
+    private var _numCardsTotal    :Int = 0;
+    private var _numCardsDL       :Int = 0;
     private var _editionsProgress :TextField;
     private var _cardsProgress    :TextField;
     private var _container        :ScrollableContainer;
@@ -134,6 +144,11 @@ class DownloadScreen extends Sprite
             _container = new ScrollableContainer(0.84 * stage.stageWidth, stage.stageHeight * _relSize * 0.8, 0.02, 
                                                 _fontColor, _fontHoverColor);
             addChild(_container);
+
+            // Create a timer that lets the screen check regularly for pending downloads
+            var timer:Timer = new Timer(100, 0);
+            timer.addEventListener(TimerEvent.TIMER_COMPLETE, checkPendingDownloads);
+            timer.start();
         }
         
         // Position UI elements
@@ -156,17 +171,71 @@ class DownloadScreen extends Sprite
     {
         // First, start downloading all editions
         var editions :Array<Edition> = _database.getEditionsToDownload();
+        _numEditionsTotal = editions.length;
+        updateProgressDisplay();
+
         for (edition in editions)
         {
+            createDownloadFolder(edition);
             addDownload(edition);
+        }
+    }
+
+    /**
+     * Updates the display of the download progress.
+     */
+    private function updateProgressDisplay() :Void 
+    {
+        _editionsProgress.text = "Edition progress: " + _numEditionsDL + " / " + _numEditionsTotal;
+        _editionsProgress.width = _editionsProgress.textWidth * 1.03;
+        _editionsProgress.height = _editionsProgress.textHeight * 1.03;
+        _cardsProgress.text = "Cards progress: " + _numCardsDL + " / " + _numCardsTotal;
+        _cardsProgress.width = _cardsProgress.textWidth * 1.03;
+        _cardsProgress.height = _cardsProgress.textHeight * 1.03;
+    }
+
+    /**
+     * Will create the download folder for the passed edition.
+     * @param  p_edition  The edition to get the short name from.
+     */
+    private function createDownloadFolder(p_edition :Edition) :Void 
+    {
+        // Get the full path
+        var fullPath :String = DownloadSettings.targetFolder + "/" + p_edition.getShortName();
+        fullPath = StringTools.replace(fullPath, "\\", "/");
+        fullPath = StringTools.replace(fullPath, "//", "/");
+
+        // Split into tokens
+        var tokens :Array<String> = fullPath.split("/");
+
+        // On Windows, the first two tokens must be combined
+        // "C:" + "folder" -> C:/folder
+        #if windows 
+            if (tokens.length > 1)
+            {
+                tokens[0] += "/" + tokens[1];
+                tokens.splice(1, 1);
+            }
+        #end
+
+        // Now create each token directory
+        var currentPath :String = "";
+        for (token in tokens)
+        {
+            currentPath += token;
+
+            FileSystem.createDirectory(currentPath);
+
+            currentPath += "/";
         }
     }
 
     /**
      * Will add a download.
      * @param p_edition The Edition or Card to download.
+     * @return  True if the download was not only added, but also started. 
      */
-    private function addDownload(p_source :Dynamic) :Void 
+    private function addDownload(p_source :Dynamic) :Bool 
     {
         // Create download job
         var job :DownloadJob = new DownloadJob(p_source);
@@ -176,10 +245,12 @@ class DownloadScreen extends Sprite
         for (display in _displays)
         {
             // Re-use an idle display
-            if (display.isIdle())
+            if (display.getIsIdle())
             {
                 display.setDownloadJob(job);
-                return;
+                display.setIsIdle(false);
+                job.start();
+                return true;
             }
         }
 
@@ -187,20 +258,26 @@ class DownloadScreen extends Sprite
         if (_container.getNumObjects() <= DownloadSettings.numParallelDownloads)
         {
             // Create download display
-            var color :RGBColor = RGBColor(_fontColor);
-            color.add(0.2);
+            var color :RGBColor = new RGBColor(_fontColor);
+            color.subtract(0xAA22AA);
             var display :DownloadDisplay = 
                 new DownloadDisplay(0.2 * stage.stageWidth, 0.05 * stage.stageHeight, _font, _fontColor, color.toInt(), job);
 
             // Add it
             _container.addObject(display);
             _displays.push(display);
+            display.setIsIdle(false);
+            job.start();
+            return true;
         }
         else
         {
             // Add this job to the waiting queue
             _waitingDownloads.push(p_source);
+            return false;
         }
+
+        return false;
     }
 
     /**
@@ -217,9 +294,12 @@ class DownloadScreen extends Sprite
             // Let the edition read the HTML
             var edition :Edition = cast job.getSource();
             edition.readCardsFromEditionHtml(job.getData());
+            _numEditionsDL++;
 
             // Start a download for each card
-            for (card ... edition.getCards())
+            var cards :Array<Card> = edition.getCards(); 
+            _numCardsTotal += cards.length;
+            for (card in cards)
             {
                 addDownload(card);
             }
@@ -228,16 +308,55 @@ class DownloadScreen extends Sprite
         else
         {
             var card :Card = cast job.getSource();
-            trace("Now download card: " + card.getFullName());
+            storeCard(card, job.getData());
+            _numCardsDL++;
         }
+        updateProgressDisplay();
 
-        // If we have waiting downloads, add one of these
-        if (_waitingDownloads.length > 0)
+        // If we have waiting downloads, add those
+        while (_waitingDownloads.length > 0)
         {
-            var source :Dynamic = _waitingDownloads[1];
+            var source :Dynamic = _waitingDownloads[0];
             _waitingDownloads.splice(0, 1);
-            addDownload(source);
+            if (!addDownload(source))
+            {
+                break;
+            }
         }
+    }
+
+    /**
+     * Will store the downloaded card to a file.
+     * @param  p_card The card to store.
+     * @param  p_data The actual image data.
+     */
+    private function storeCard(p_card :Card, p_data :Dynamic) :Void 
+    {
+        // Get folder path
+        var fullPath :String = DownloadSettings.targetFolder + "/" + p_card.getEdition().getShortName() + "/";
+        fullPath = StringTools.replace(fullPath, "\\", "/");
+        fullPath = StringTools.replace(fullPath, "//", "/");
+
+        // Get the card name
+        var cardName :String = p_card.getFullName();
+        if (DownloadSettings.toLower)
+        {
+            cardName = cardName.toLowerCase();
+        }
+        else if (DownloadSettings.toUpper)
+        {
+            cardName = cardName.toUpperCase();
+        }
+        fullPath += DownloadSettings.prefix + cardName + DownloadSettings.postfix + ".jpg";
+
+        // Create file object
+        var file :FileOutput = File.write(fullPath, true);
+
+        // Store image bytes
+        var bytes :ByteArray = cast p_data;
+        bytes.position = 0;
+        file.writeBytes(bytes, 0, bytes.bytesAvailable);
+        file.close();
     }
 
     /**
@@ -246,5 +365,22 @@ class DownloadScreen extends Sprite
     private function handleBackClick(p_event :MouseEvent) :Void 
     {
         dispatchEvent(new Event(BACK));
+    }
+
+    /**
+     * Will check for pending downloads.
+     */
+    private function checkPendingDownloads(p_event :TimerEvent) :Void 
+    {
+        // If we have waiting downloads, add those
+        while (_waitingDownloads.length > 0)
+        {
+            var source :Dynamic = _waitingDownloads[0];
+            _waitingDownloads.splice(0, 1);
+            if (!addDownload(source))
+            {
+                break;
+            }
+        }
     }
 }

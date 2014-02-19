@@ -1,0 +1,1374 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"_edi",
+				"_numEditionsDL	var"
+			],
+			[
+				"p_",
+				"p_other	var"
+			],
+			[
+				"set",
+				"setIsIdle( p_idle : Bool )	Void"
+			],
+			[
+				"U",
+				"URLLoaderDataFormat	class"
+			],
+			[
+				"data",
+				"dataFormat	flash.net.URLLoaderDataFormat"
+			],
+			[
+				"Tim",
+				"Timer	class"
+			],
+			[
+				"u",
+				"utils	package"
+			],
+			[
+				"ti",
+				"Timer	class"
+			],
+			[
+				"Timer",
+				"TimerEvent"
+			],
+			[
+				"full",
+				"fullPath	var"
+			],
+			[
+				"Stri",
+				"String	class"
+			],
+			[
+				"Fil",
+				"FileSystem	class"
+			],
+			[
+				"g",
+				"getFullName()	String"
+			],
+			[
+				"p_d",
+				"p_data	var"
+			],
+			[
+				"w",
+				"writeBytes(...)	Int"
+			],
+			[
+				"card",
+				"cardName	var"
+			],
+			[
+				"to",
+				"toLowerCase()	String"
+			],
+			[
+				"Str",
+				"String	class"
+			],
+			[
+				"store",
+				"storeCard"
+			],
+			[
+				"String",
+				"StringTools	class"
+			],
+			[
+				"DownloadS",
+				"DownloadSettings	eu.jdrabner.mtgdownloader.download"
+			],
+			[
+				"mat",
+				"matched( n : Int )	String"
+			],
+			[
+				"border",
+				"borderWidth	var"
+			],
+			[
+				"_ch",
+				"_children	var"
+			],
+			[
+				"camPo",
+				"camPosWS"
+			],
+			[
+				"alpha",
+				"alphaDepth"
+			],
+			[
+				"alph",
+				"alphaUseLight"
+			],
+			[
+				"Download",
+				"DownloadJob"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"add",
+				"addDownload	function"
+			],
+			[
+				"o",
+				"onFinish(...)	Unknown<3>"
+			],
+			[
+				"t",
+				"to(...)	Unknown<15>"
+			],
+			[
+				"p",
+				"push(...)	Int"
+			],
+			[
+				"stage",
+				"stageWidth"
+			],
+			[
+				"DownloadDis",
+				"DownloadDisplay	class"
+			],
+			[
+				"Down",
+				"DownloadJob	class"
+			],
+			[
+				"textF",
+				"textFormat	var"
+			],
+			[
+				"_targ",
+				"_targetHeight	var"
+			],
+			[
+				"_targe",
+				"_targetHeight	var"
+			],
+			[
+				"Downlo",
+				"DownloadJob"
+			],
+			[
+				"_bar",
+				"_barFillColor	var"
+			],
+			[
+				"Downl",
+				"DownloadJob"
+			],
+			[
+				"opa",
+				"opaqueColor"
+			],
+			[
+				"parse",
+				"parseInt( x : String )	Null<Int>"
+			],
+			[
+				"getT",
+				"getText()	String"
+			],
+			[
+				"_to",
+				"_toUpper	var"
+			],
+			[
+				"_fo",
+				"_font	var"
+			],
+			[
+				"T",
+				"INPUT_TYPE_INT	Int"
+			],
+			[
+				"RGB",
+				"RGBColor	class"
+			],
+			[
+				"Input",
+				"InputTextField"
+			],
+			[
+				"se",
+				"setTitleText( p_text : String )	Void"
+			],
+			[
+				"_c",
+				"_caption	var"
+			],
+			[
+				"p_fo",
+				"p_fontColor	var"
+			],
+			[
+				"Event",
+				"EventX	tweenx909"
+			],
+			[
+				"Progress",
+				"ProgressBar	eu.jdrabner.ui"
+			],
+			[
+				"Pro",
+				"ProgressBar	class"
+			],
+			[
+				"get",
+				"getChecked()	Bool"
+			],
+			[
+				"stageH",
+				"stageHeight	Int"
+			],
+			[
+				"_chi",
+				"_childContainer	var"
+			],
+			[
+				"0",
+				"0"
+			],
+			[
+				"_scroll",
+				"_scrollBar	var"
+			],
+			[
+				"rel",
+				"_relPos	var"
+			],
+			[
+				"_scr",
+				"_scrollBar	var"
+			],
+			[
+				"lo",
+				"localX	Float"
+			],
+			[
+				"po",
+				"Point	class"
+			],
+			[
+				"_scrollBarColorH",
+				"_scrollBarColorHover	var"
+			],
+			[
+				"mouse",
+				"MOUSE_OVER	String"
+			],
+			[
+				"lastC",
+				"lastChild	var"
+			],
+			[
+				"_child",
+				"_childContainer	var"
+			],
+			[
+				"MOUSE_M",
+				"MOUSE_MOVE	String"
+			],
+			[
+				"ADD",
+				"ADDED_TO_STAGE	String"
+			],
+			[
+				"MOUSE_Do",
+				"MOUSE_DOWN	String"
+			],
+			[
+				"drawr",
+				"drawRoundRect(...)	Void"
+			],
+			[
+				"_fu",
+				"_fullName"
+			],
+			[
+				"SVG",
+				"SVGCheckBox	eu.jdrabner.ui"
+			],
+			[
+				"hovere",
+				"hovered	var"
+			],
+			[
+				"_un",
+				"_unNormalLayer	var"
+			],
+			[
+				"checked",
+				"_checked	var"
+			],
+			[
+				"p_ch",
+				"p_checked	var"
+			],
+			[
+				"d",
+				"Database	class"
+			],
+			[
+				"e",
+				"events	package"
+			],
+			[
+				"Iterat",
+				"Iterator	class"
+			],
+			[
+				"HT",
+				"HtmlNodeElement	class"
+			],
+			[
+				"Htm",
+				"HtmlDocument	class"
+			],
+			[
+				"p_u",
+				"p_url	var"
+			],
+			[
+				"IOE",
+				"IOErrorEvent	class"
+			],
+			[
+				"HTTP",
+				"HTTPStatusEvent	class"
+			],
+			[
+				"URLR",
+				"URLRequest	flash.net"
+			],
+			[
+				"text",
+				"textHeight	Float"
+			],
+			[
+				"TextF",
+				"TextFormat	class"
+			],
+			[
+				"sca",
+				"ScanScreen	class"
+			],
+			[
+				"p_fontC",
+				"p_fontColor	var"
+			],
+			[
+				"_font",
+				"_fontColor	var"
+			],
+			[
+				"textW",
+				"textWidth	Float"
+			],
+			[
+				"priva",
+				"private"
+			],
+			[
+				"_rel",
+				"_relSizeFont	var"
+			],
+			[
+				"Textf",
+				"TextFormat	flash.text"
+			],
+			[
+				"Eve",
+				"Event	flash.events"
+			],
+			[
+				"_bgC",
+				"_bgColor	var"
+			],
+			[
+				"ou",
+				"target_output"
+			],
+			[
+				"li",
+				"litScene_out"
+			],
+			[
+				"world",
+				"worldNormal"
+			],
+			[
+				"recalcu",
+				"recalculateInternal	function"
+			],
+			[
+				"remo",
+				"removeChild( x : Xml )	Bool"
+			],
+			[
+				"new",
+				"newVal	var"
+			],
+			[
+				"Noise",
+				"NoiseSettingControls	com.rogueassembly.terraingen.ui"
+			],
+			[
+				"_sett",
+				"_settingControls"
+			],
+			[
+				"_node",
+				"_nodes	var"
+			],
+			[
+				"NoiseS",
+				"NoiseSettings"
+			],
+			[
+				"ele",
+				"elementsNamed(...)	Iterator<Xml>"
+			],
+			[
+				"Iter",
+				"Iterator	class"
+			],
+			[
+				"conte",
+				"content	var"
+			],
+			[
+				"_nod",
+				"_nodes	var"
+			],
+			[
+				"re",
+				"replace"
+			],
+			[
+				"Save",
+				"SaveLoadScreen	com.rogueassembly.terraingen.screens"
+			],
+			[
+				"screes",
+				"screensToSaveLoad	var"
+			],
+			[
+				"create",
+				"createElement( name : String )	Xml"
+			],
+			[
+				"Byte",
+				"ByteArray	flash.utils"
+			],
+			[
+				"_setti",
+				"_settingFileName	var"
+			],
+			[
+				"fir",
+				"firstElement()	Xml"
+			],
+			[
+				"scr",
+				"ScreenBase	class"
+			],
+			[
+				"cr",
+				"createElement( name : String )	Xml"
+			],
+			[
+				"xml",
+				"Xml	class"
+			],
+			[
+				"_sele",
+				"_nodeSelector	var"
+			],
+			[
+				"geta",
+				"getActualWidth()	Float"
+			],
+			[
+				"_",
+				"_nameInput	var"
+			],
+			[
+				"handle",
+				"handleSelectorChange"
+			],
+			[
+				"Boo",
+				"Bool"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/eu/jdrabner/mtgdownloader/data/Edition.hx",
+			"settings":
+			{
+				"buffer_size": 3190,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/mtgdownloader/download/DownloadJob.hx",
+			"settings":
+			{
+				"buffer_size": 3371,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/mtgdownloader/download/DownloadDisplay.hx",
+			"settings":
+			{
+				"buffer_size": 5140,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/ui/RGBColor.hx",
+			"settings":
+			{
+				"buffer_size": 3429,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/ui/ProgressBar.hx",
+			"settings":
+			{
+				"buffer_size": 1735,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/mtgdownloader/screens/DownloadScreen.hx",
+			"settings":
+			{
+				"buffer_size": 13082,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/mtgdownloader/download/FileDownloader.hx",
+			"settings":
+			{
+				"buffer_size": 4247,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/mtgdownloader/DownloaderMain.hx",
+			"settings":
+			{
+				"buffer_size": 4932,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/ui/ScrollableContainer.hx",
+			"settings":
+			{
+				"buffer_size": 8441,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/eu/jdrabner/mtgdownloader/data/Card.hx",
+			"settings":
+			{
+				"buffer_size": 1001,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 219.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"up",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insall",
+				"Package Control: Install Package"
+			],
+			[
+				"save",
+				"Plist Json Converter: Save JSON to PLIST"
+			],
+			[
+				"scope",
+				"Scope Hunter: Show Scope Under Cursor(s)"
+			],
+			[
+				"scop",
+				"Scope Hunter: Toggle Instant Scoper"
+			],
+			[
+				"sa",
+				"Plist Json Converter: Save JSON to PLIST"
+			],
+			[
+				"save ",
+				"Plist Json Converter: Save JSON to PLIST"
+			],
+			[
+				"toggl",
+				"Scope Hunter: Toggle Instant Scoper"
+			],
+			[
+				"to",
+				"Scope Hunter: Toggle Instant Scoper"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"shad",
+				"Set Syntax: CG Shader"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"uuid.uuid4()",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read()) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/base_materials/Deferred_Base.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/ShadowCaster.program",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Light_Deferred_Directional.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Deferred_Base.program",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/particles/stars.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Light_Deferred_Ambient.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/base_materials/Deferred_Lights.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/particles/testparticle.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/compositors/Deferred.compositor",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/base_materials/Fullscreen.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Fullscreen.program",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/base_materials/Deferred_Base.material.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Light_Deferred_Point.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/WriteColor.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Deferred_Lights.program",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Light_Deferred_Spot.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Deferred_Base.program.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/base_materials/Deferred_Lights.material.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Normal_Deferred.vert.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Normal_Deferred.frag.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Normal_Deferred.vert",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Light_Deferred_Directional.frag.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Deferred_Lights.program.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/compositors/Deferred.compositor.orig",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Particle.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Particle.vert",
+		"/C/Users/TheSHEEEP/.idlerc/recent-files.lst",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgdownloader/download/DownloadSettings.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/project.xml",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgdownloader/screens/SettingScreen.hx",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/particles/tornado.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/particles/tornado.pu",
+		"/C/Coding/Particle Universe/Particle Universe Editor/media/examples/materials/pu_example.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/particles/effect.pu",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Normal.frag",
+		"/C/Users/TheSHEEEP/Documents/njjkknjk.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Normal_Deferred.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/Rocks.material",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/ScrollableContainer.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgdownloader/TitleBar.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/ProgressBar.hx",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/config/keys_default.cfg",
+		"/C/Users/TheSHEEEP/Dropbox/Job/S4G/OGE208/presentation/index.html",
+		"/C/Users/TheSHEEEP/Dropbox/Job/S4G/OGE208/presentation/pics/svg_example.svg",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/RGBColor.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/SVGCheckBox.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgDownloader/screens/ScanScreen.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgdownloader/data/Database.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgdownloader/data/Card.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/SVGTextButton.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/SVGButton.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgDownloader/DownloaderMain.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgDownloader/TitleBar.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/ScanScreen.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/sitemap.html",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/SVGSlider.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/SVGSelector.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/mtgdownloader/download/FileDownloader.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/InputTextField.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/MTGDownloader.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/Source/Main.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/NoiseSettingControls.hx",
+		"/C/Coding/GitHubRepos/MTGDownloader/src/eu/jdrabner/ui/ColorableBackground.hx",
+		"/C/Survivor_Repo/own_projects/CMake_OgreVideoPlugin/CMakeLists.txt",
+		"/C/Games/forge/forge-gui-1.5.11.tar.bz2",
+		"/C/Survivor_Repo/own_projects/CMake_OgreVideoPlugin/cmake/FindOGRE.cmake",
+		"/C/Survivor_Repo/own_projects/CMake_OgreVideoPlugin/cmake/OgreConfigTargets.cmake",
+		"/C/Users/TheSHEEEP/Desktop/rezept.txt",
+		"/C/Users/TheSHEEEP/Dropbox/Job/S4G/GD107/presentation/index.html",
+		"/C/Users/TheSHEEEP/Dropbox/Job/S4G/GD107/presentation/css/reveal.css",
+		"/C/Users/TheSHEEEP/Dropbox/Job/S4G/OGE104/presentation/css/reveal.css",
+		"/C/Coding/GitHubRepos/SR5-Shaman/.gitignore",
+		"/C/Coding/eprofiler-windows32-mingw-intel-1.1.1/Samples/ContainerSample/Makefile.mk",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/ShadowCaster.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Instancing_Deferred.vert",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/WriteDepthRTOnly.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Terrain_Deferred.frag",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/materials/programs/GLSL150/pssmCasterFp.glsl",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/Deferred_Terrain.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/Deferred_Base.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/simple.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Deferred_Terrain.program",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/FinalPostEffect.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/Deferred_Lights.material",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/Zen Tabs/ZenTabs.sublime-settings",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Overlay.program",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/deferred.compositor",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/Fullscreen.material",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/ShadowCaster.material",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/deferred_post.material",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/deferreddemo.material",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/deferred_post_minilight.material",
+		"/C/Users/TheSHEEEP/Documents/GitHub/ST-OgreScripts/OgreMaterialScripts.tmLanguage",
+		"/C/Users/TheSHEEEP/Documents/GitHub/ST-OgreScripts/OgreMaterialScripts.tmLanguage.JSON",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/ShadowCaster_fp.glsl",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/ShadowCaster_vp.glsl",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Instancing_Deferred_ShadowCaster.vert",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/DeferredShading/post/LightMaterial_ps.glsl",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Glass_Overlay.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/Glasses.material",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/materials/Overlay.material",
+		"/C/Coding/OgreCascadedShadowsSrc/media/core/ShadowReceiver.cg",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/AAAPackageDev.sublime-package",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/AlphaStepCombine.frag",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Light_Deferred_Fullscreen.vert",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Light_Deferred_Base.vert",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/DeferredShading/post/LightMaterial_vs.glsl",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/DeferredShading/post/Ambient_ps.glsl",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/DeferredShading/post/vs.glsl",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/OgreMaterialScripts.tmLanguage.JSON",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/OgreMaterialScripts.tmLanguage",
+		"/C/Survivor_Repo/external_projects/sources/ogre_v1-9/Samples/Media/DeferredShadingMedia/DeferredShading/post/ShowDS_ps.glsl",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/OgreMaterialScripts.tmPreferences",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/ShaderLanguages/OpenGL SL.tmLanguage",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/ShaderLanguages/Comments (OpenGL SL).tmPreferences",
+		"/C/Survivor_Repo/own_projects/PrototypeFramework/assets/shaders/programs/Glass_Overlay.vert",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/OgreCompositor.tmLanguage.JSON",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/OgreCompositor.tmLanguage",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/ShaderLanguages/ParseCG.py",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/OgreCompositor.json",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/User/OgreCompositor.tmLanguage",
+		"/C/Coding/Sublime Text 3/Packages/ActionScript.sublime-package",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/Ogre_Material.tmLanguage",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/OgreMaterial/OgreCompositor.plist",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/ShaderLanguages/High Level SL.tmLanguage",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/ShaderLanguages/shaderlanguages.sublime-project",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/ShaderLanguages/ShaderLanguages.sublime-settings",
+		"/C/Users/TheSHEEEP/AppData/Roaming/Sublime Text 3/Packages/ShaderLanguages/Unity ShaderLab.tmLanguage"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"<open folders>",
+			"C:\\Survivor_Repo\\own_projects\\Haxe_TerrainGen\\Source",
+			"",
+			"C:\\Survivor_Repo\\own_projects\\Haxe_TerrainGen\\Source",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"readCardsFromEditionHtml",
+			"\"Hello\"",
+			"TODO: here",
+			"TODO:",
+			"camPos",
+			"LIGHTING_OFF",
+			"AlphaRejection",
+			"ShadowCaster_AlphaRejection_ps",
+			"ALPHA_REJECTION",
+			"vertexColor",
+			"Star",
+			"_editionsDone",
+			"vector gr",
+			"dispatcher",
+			"</br>",
+			"OGRE_LIBRARIES",
+			"string_id",
+			"0",
+			"shadowDistance",
+			"shadowProjPos",
+			"distanceGeomFromLight",
+			"worldPosGeomPixel",
+			"viewPosGeomPixel",
+			"pixelPosVS",
+			"shadowCamPos",
+			"shadow_receiver_vertex_program_ref",
+			"shadow_caster_vertex_program_ref",
+			"tangent",
+			"shadowCamPos",
+			" ",
+			"shared_para",
+			" ",
+			"meta",
+			"endif",
+			" ",
+			">\n",
+			", ",
+			"fun",
+			"function",
+			"block",
+			"meta",
+			"_saveBtn",
+			"fnv_",
+			"Default\"",
+			"Default",
+			"trace",
+			"setSelectionIndex",
+			"exists",
+			"}\n",
+			"storeasXml",
+			"commen",
+			"col",
+			"gain",
+			"cycle",
+			"> 0",
+			"_settings",
+			"ww",
+			"hh",
+			"scale",
+			"== 255",
+			"limit",
+			"- i",
+			"+ i",
+			"_distanceBytes =",
+			"_distanceBytes",
+			"_nc.getSettings()Screen",
+			"_settings",
+			"ww",
+			"hh",
+			"trac",
+			".octaves",
+			"m_numoctaves",
+			"getI",
+			"I32",
+			"setI32",
+			"showHideTooltip",
+			"resetcl",
+			"nextInt",
+			"not e",
+			"&g",
+			"actionscript",
+			"\"actionscript\"",
+			"Date.",
+			"setSeedTime",
+			"Date",
+			"p_slider",
+			"p_tf",
+			"\"handle",
+			"Rectangle",
+			".beginFill",
+			"beginFill",
+			"resize"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"_editionsProgress",
+			"p_loader",
+			"<br />",
+			"translations",
+			"distShadowToLight",
+			"pixelPosShadowPS",
+			"distPixelToLight",
+			"pixelPosWS",
+			"pixelPosVS",
+			"|",
+			"",
+			"|",
+			"_storeBtn",
+			"setCurrentSelectionIndex",
+			"storeAsXml",
+			"data",
+			"i",
+			"== 0",
+			"_nc.getSettings()",
+			"nx",
+			"ny",
+			"> 0",
+			"- dist",
+			"+ dist",
+			"_settingsScreen",
+			"_nc.getSettings()",
+			"x",
+			"y",
+			"slider",
+			"tf"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/eu/jdrabner/mtgdownloader/data/Edition.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3172,
+								3172
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1283.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/eu/jdrabner/mtgdownloader/download/DownloadJob.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3371,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2065,
+								2065
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 900.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/eu/jdrabner/mtgdownloader/download/DownloadDisplay.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5140,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4073,
+								4073
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 885.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/eu/jdrabner/ui/RGBColor.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3429,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2802,
+								2802
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1358.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/eu/jdrabner/ui/ProgressBar.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1735,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								661,
+								661
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/eu/jdrabner/mtgdownloader/screens/DownloadScreen.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13082,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9571,
+								9571
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3825.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/eu/jdrabner/mtgdownloader/download/FileDownloader.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4247,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2513,
+								2513
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1035.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/eu/jdrabner/mtgdownloader/DownloaderMain.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4932,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4932,
+								4932
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1721.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/eu/jdrabner/ui/ScrollableContainer.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8441,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8433,
+								8433
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/eu/jdrabner/mtgdownloader/data/Card.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1001,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								555,
+								555
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 230.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.scope_viewer":
+	{
+		"height": 100.0
+	},
+	"project": "MTGDownloader.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 432.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 342.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

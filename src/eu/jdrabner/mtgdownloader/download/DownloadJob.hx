@@ -29,6 +29,8 @@ class DownloadJob extends EventDispatcher
      */
     public function new(p_source :Dynamic, p_bar :ProgressBar = null)
     {
+        super();
+
         // Remember source
         if (Std.is(p_source, Card))
         {
@@ -66,11 +68,26 @@ class DownloadJob extends EventDispatcher
     }
 
     /**
+     * Will start the download.
+     */
+    public function start() :Void 
+    {
+        _downloader.startDownload();
+    }
+
+    /**
      * @return The full description of the job, to be displayed to the user.
      */
     public function getFullDescription() :String
     {
-        return "Hello";
+        if (_isCard) 
+        {
+            return "Card:   " + _card.getFullName();
+        }
+        else
+        {
+            return "Edition:   " + _edition.getFullName();
+        }
     }
 
     /**
