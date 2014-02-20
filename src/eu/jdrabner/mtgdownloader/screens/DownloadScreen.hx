@@ -347,6 +347,11 @@ class DownloadScreen extends Sprite
         {
             cardName = cardName.toUpperCase();
         }
+        // Some cards have a "/" in the name - must replace that with something non-path-related
+        cardName = StringTools.replace(cardName, "/", "_");
+        // We need to replace the Æ with something everyone can read
+        cardName = StringTools.replace(cardName, "Æ", "AE");
+        
         fullPath += DownloadSettings.prefix + cardName + DownloadSettings.postfix + ".jpg";
 
         // Create file object

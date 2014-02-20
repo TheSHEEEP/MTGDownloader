@@ -48,7 +48,7 @@ class DownloaderMain extends Sprite
         addChild(_scanScreen);
 
         // 2: Settings
-        _settingScreen = new SettingScreen(_database, 0x4B9F94, 0xFFFFFF, 0x65BEB4, 0.8, "fonts/OpenSans-Semibold.ttf");
+        _settingScreen = new SettingScreen(_database, 0x3A7897, 0xFFFFFF, 0x656565, 0.8, "fonts/OpenSans-Semibold.ttf");
         _settingScreen.addEventListener(SettingScreen.DONE, handleSettingScreenDone);
         _settingScreen.addEventListener(SettingScreen.BACK, handleSettingScreenBack);
         _settingScreen.visible = false;

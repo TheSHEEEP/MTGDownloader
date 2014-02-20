@@ -106,15 +106,15 @@ class Edition extends flash.events.EventDispatcher
         // Parse each row to get the link to the card
         var link :HtmlNodeElement = null;
         var card :Card = null;
-        var index  :Int = 0;
-        var getIndex :EReg = ~/[0-9]+/;
+        var index  :String = "";
+        var getIndex :EReg = ~/[0-9]+[a-zA-Z]{0,1}/;
         for (element in rows)
         {
             link = element.find("a")[0];
 
             // Get the index
             getIndex.match(link.getAttribute("href"));
-            index = Std.parseInt(getIndex.matched(0));
+            index = getIndex.matched(0);
 
             // Create and add card
             card  = new Card(this, index, link.innerHTML);

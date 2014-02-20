@@ -143,6 +143,6 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function ioErrorHandler(p_event :IOErrorEvent) :Void 
     {
-        trace("ioErrorHandler: " + p_event.text);
+        trace("ioErrorHandler: " + p_event.text + " for URL: " + _url);
     }
 }

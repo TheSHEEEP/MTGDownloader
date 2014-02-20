@@ -67,7 +67,7 @@ class InputTextField extends Sprite
         _label.defaultTextFormat = textFormat;
         _label.text = p_caption;
         _label.width = (1.0 - p_inputPart - 0.05) * p_width;
-        _label.height = _label.textHeight;
+        _label.height = _label.textHeight * 1.03;
         _label.y = p_height / 2 - _label.height / 2;
         addChild(_label);
 
