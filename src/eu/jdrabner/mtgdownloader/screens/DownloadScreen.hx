@@ -351,6 +351,11 @@ class DownloadScreen extends Sprite
         cardName = StringTools.replace(cardName, "/", "_");
         // We need to replace the Æ with something everyone can read
         cardName = StringTools.replace(cardName, "Æ", "AE");
+        // Some cards have "" in their name - can't do that with files
+        cardName = StringTools.replace(cardName, "\"", "");
+        // Some cards have ? in their name - can't do that with files
+        cardName = StringTools.replace(cardName, "?", "");
+        
         
         fullPath += DownloadSettings.prefix + cardName + DownloadSettings.postfix + ".jpg";
 

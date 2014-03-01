@@ -107,7 +107,7 @@ class Edition extends flash.events.EventDispatcher
         var link :HtmlNodeElement = null;
         var card :Card = null;
         var index  :String = "";
-        var getIndex :EReg = ~/[0-9]+[a-zA-Z]{0,1}/;
+        var getIndex :EReg = ~/[0-9]+[a-zA-Z]{0,1}\.html/;
         for (element in rows)
         {
             link = element.find("a")[0];
@@ -115,6 +115,7 @@ class Edition extends flash.events.EventDispatcher
             // Get the index
             getIndex.match(link.getAttribute("href"));
             index = getIndex.matched(0);
+            index = index.substr(0, index.length - 5);
 
             // Create and add card
             card  = new Card(this, index, link.innerHTML);
