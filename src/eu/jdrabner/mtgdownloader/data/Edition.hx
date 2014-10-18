@@ -2,15 +2,15 @@
 package eu.jdrabner.mtgdownloader.data;
 
 import flash.events.Event;
-import haxe.htmlparser.HtmlDocument;
-import haxe.htmlparser.HtmlNodeElement;
+import htmlparser.HtmlDocument;
+import htmlparser.HtmlNodeElement;
 
 class Edition extends flash.events.EventDispatcher
 {
     private var _fullName     :String = "None";
     private var _shortName    :String = "None";
 
-    private var _numCards  :Int = 0; 
+    private var _numCards  :Int = 0;
     private var _cards     :Array<Card>;
 
     private var _download     :Bool = false;
@@ -41,7 +41,7 @@ class Edition extends flash.events.EventDispatcher
     /**
      * @return The full name of this edition.
      */
-    public function getFullName() :String 
+    public function getFullName() :String
     {
         return _fullName;
     }
@@ -49,7 +49,7 @@ class Edition extends flash.events.EventDispatcher
     /**
      * @return The number of cards in this edition.
      */
-    public function getNumberOfCards() :Int 
+    public function getNumberOfCards() :Int
     {
         return _numCards;
     }
@@ -62,7 +62,7 @@ class Edition extends flash.events.EventDispatcher
     /**
      * @param p_download if this is true, the edition will be downloaded.
      */
-    public function setShouldDownload(p_download :Bool) :Void 
+    public function setShouldDownload(p_download :Bool) :Void
     {
         _download = p_download;
     }
@@ -82,7 +82,7 @@ class Edition extends flash.events.EventDispatcher
      * @param  p_n       The n.
      * @return The nth index.
      */
-    private function nthIndexOf(p_string :String, p_lookFor :String, p_n :Int) :Int 
+    private function nthIndexOf(p_string :String, p_lookFor :String, p_n :Int) :Int
     {
         var lastIndex :Int = 0;
         for (count in 0 ... p_n)
@@ -96,7 +96,7 @@ class Edition extends flash.events.EventDispatcher
      * Will read the number of cards from the passed HTML.
      * @param  p_html     The HTML source of this edition.
      */
-    public function readCardsFromEditionHtml(p_html :String) :Void 
+    public function readCardsFromEditionHtml(p_html :String) :Void
     {
         // We can parse the full HTML, it does not seem to contain errors.
         var xml :HtmlDocument = new HtmlDocument(p_html);

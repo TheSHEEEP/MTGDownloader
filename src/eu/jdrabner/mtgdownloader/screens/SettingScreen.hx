@@ -10,8 +10,8 @@ import flash.text.TextFormat;
 import flash.net.URLRequest;
 import flash.Lib;
 import openfl.Assets;
-import haxe.htmlparser.HtmlDocument;
-import haxe.htmlparser.HtmlNodeElement;
+import htmlparser.HtmlDocument;
+import htmlparser.HtmlNodeElement;
 import eu.jdrabner.ui.SVGTextButton;
 import eu.jdrabner.ui.SVGCheckBox;
 import eu.jdrabner.ui.InputTextField;
@@ -24,7 +24,7 @@ class SettingScreen extends Sprite
 {
     public static inline var     DONE :String = "Done!";
     public static inline var     BACK :String = "Back!";
-    
+
     private var _database     :Database;
 
     private var _bgColor         :Int;
@@ -71,7 +71,7 @@ class SettingScreen extends Sprite
      * @param  p_event :Event        [description]
      * @return         [description]
      */
-    private function init(p_event :Event) :Void 
+    private function init(p_event :Event) :Void
     {
         // Draw background
         graphics.clear();
@@ -89,50 +89,50 @@ class SettingScreen extends Sprite
             bgBorderColor.add(-0.2);
 
             // Number of parallel downloads
-            _numParDownloads = new InputTextField(Std.int(0.22 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.4, 
-                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_INT, _fontColor, _font, 
+            _numParDownloads = new InputTextField(Std.int(0.22 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.4,
+                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_INT, _fontColor, _font,
                 "Parallel Downloads:", "10");
             addChild(_numParDownloads);
 
             // Prefix
-            _prefix = new InputTextField(Std.int(0.22 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.5, 
-                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_TEXT, _fontColor, _font, 
+            _prefix = new InputTextField(Std.int(0.22 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.5,
+                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_TEXT, _fontColor, _font,
                 "Prefix:", "");
             addChild(_prefix);
 
             // Postfix
-            _postfix = new InputTextField(Std.int(0.22 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.5, 
-                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_TEXT, _fontColor, _font, 
+            _postfix = new InputTextField(Std.int(0.22 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.5,
+                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_TEXT, _fontColor, _font,
                 "Postfix:", ".full");
             addChild(_postfix);
 
             // To lower
-            _toLower = new SVGCheckBox(Std.int(stage.stageWidth * 0.22), Std.int(stage.stageHeight * 0.04), 0.18, 
-                "(Filename) to lower", _fontColor, _fontHoverColor, _font, 
+            _toLower = new SVGCheckBox(Std.int(stage.stageWidth * 0.22), Std.int(stage.stageHeight * 0.04), 0.18,
+                "(Filename) to lower", _fontColor, _fontHoverColor, _font,
                 "svg/cb_white_un_normal", "svg/cb_white_un_hover", "svg/cb_white_normal", "svg/cb_white_hover");
             addChild(_toLower);
 
             // To upper
-            _toUpper = new SVGCheckBox(Std.int(stage.stageWidth * 0.22), Std.int(stage.stageHeight * 0.04), 0.18, 
-                "(Filename) to UPPER", _fontColor, _fontHoverColor, _font, 
+            _toUpper = new SVGCheckBox(Std.int(stage.stageWidth * 0.22), Std.int(stage.stageHeight * 0.04), 0.18,
+                "(Filename) to UPPER", _fontColor, _fontHoverColor, _font,
                 "svg/cb_white_un_normal", "svg/cb_white_un_hover", "svg/cb_white_normal", "svg/cb_white_hover");
             addChild(_toUpper);
 
             // Target folder
-            _targetFolder = new InputTextField(Std.int(0.5 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.7, 
-                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_TEXT, _fontColor, _font, 
+            _targetFolder = new InputTextField(Std.int(0.5 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.7,
+                bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_TEXT, _fontColor, _font,
                 "Target folder:", "C:/magiccards");
             addChild(_targetFolder);
 
             // Back
-            _backBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
+            _backBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight),
                 "Back", _fontColor, _font,
                 "svg/btn_white_normal", "svg/btn_white_click", "svg/btn_white_hover");
             _backBtn.addEventListener(MouseEvent.CLICK, handleBackClick);
             addChild(_backBtn);
 
             // Ok
-            _okBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
+            _okBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight),
                 "Ok", _fontColor, _font,
                 "svg/btn_white_normal", "svg/btn_white_click", "svg/btn_white_hover");
             _okBtn.addEventListener(MouseEvent.CLICK, handleOkClick);
@@ -165,7 +165,7 @@ class SettingScreen extends Sprite
     /**
      * Will go back to the last step.
      */
-    private function handleBackClick(p_event :MouseEvent) :Void 
+    private function handleBackClick(p_event :MouseEvent) :Void
     {
         dispatchEvent(new Event(BACK));
     }
@@ -173,7 +173,7 @@ class SettingScreen extends Sprite
     /**
      * Will continue to the next step.
      */
-    private function handleOkClick(p_event :MouseEvent) :Void 
+    private function handleOkClick(p_event :MouseEvent) :Void
     {
         // Take note of settings
         DownloadSettings.numParallelDownloads = Std.parseInt(_numParDownloads.getText());

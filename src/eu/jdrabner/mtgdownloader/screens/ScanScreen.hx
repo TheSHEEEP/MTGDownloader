@@ -10,8 +10,8 @@ import flash.text.TextFormat;
 import flash.net.URLRequest;
 import flash.Lib;
 import openfl.Assets;
-import haxe.htmlparser.HtmlDocument;
-import haxe.htmlparser.HtmlNodeElement;
+import htmlparser.HtmlDocument;
+import htmlparser.HtmlNodeElement;
 import eu.jdrabner.ui.SVGTextButton;
 import eu.jdrabner.ui.SVGCheckBox;
 import eu.jdrabner.ui.ScrollableContainer;
@@ -73,7 +73,7 @@ class ScanScreen extends Sprite
      * @param  p_event :Event        [description]
      * @return         [description]
      */
-    private function init(p_event :Event) :Void 
+    private function init(p_event :Event) :Void
     {
         // Draw background
         graphics.clear();
@@ -85,28 +85,28 @@ class ScanScreen extends Sprite
         if (_allBtn == null)
         {
             // All
-            _allBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
+            _allBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight),
                 "All", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
             _allBtn.addEventListener(MouseEvent.CLICK, handleAllClick);
             addChild(_allBtn);
 
             // None
-            _noneBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
+            _noneBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight),
                 "None", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
             _noneBtn.addEventListener(MouseEvent.CLICK, handleNoneClick);
             addChild(_noneBtn);
 
             // Invert
-            _invertBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
+            _invertBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight),
                 "Invert", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
             _invertBtn.addEventListener(MouseEvent.CLICK, handleInvertClick);
             addChild(_invertBtn);
 
             // Ok
-            _okBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight), 
+            _okBtn = new SVGTextButton(Std.int(0.1 * stage.stageWidth), Std.int(0.1 * stage.stageHeight),
                 "OK", _fontColor, _font,
                 "svg/btn_grey_normal", "svg/btn_grey_click", "svg/btn_grey_hover");
             _okBtn.addEventListener(MouseEvent.CLICK, handleOkClick);
@@ -120,7 +120,7 @@ class ScanScreen extends Sprite
             _progress = new ProgressBar(0.2 * stage.stageWidth, 0.05 * stage.stageHeight, _fontColor, 0x0000FF);
             addChild(_progress);
         }
-        
+
         // Create hint
         if (_hint == null)
         {
@@ -161,7 +161,7 @@ class ScanScreen extends Sprite
     /**
      * Download the site that holds the information about all editions.
      */
-    public function go() :Void 
+    public function go() :Void
     {
         // var downloader :FileDownloader = new FileDownloader("file://C:/Coding/GitHubRepos/MTGDownloader/sitemap.html");
         var downloader :FileDownloader = new FileDownloader("http://magiccards.info/sitemap.html", _progress);
@@ -176,7 +176,7 @@ class ScanScreen extends Sprite
      * @param  p_n       The n.
      * @return The nth index.
      */
-    private function nthIndexOf(p_string :String, p_lookFor :String, p_n :Int) :Int 
+    private function nthIndexOf(p_string :String, p_lookFor :String, p_n :Int) :Int
     {
         var lastIndex :Int = 0;
         for (count in 0 ... p_n)
@@ -189,7 +189,7 @@ class ScanScreen extends Sprite
     /**
      * Will parse the downloaded HTML file to get all editions.
      */
-    private function handleDownloadDone(p_event :Event) :Void 
+    private function handleDownloadDone(p_event :Event) :Void
     {
         // Find all "a" inside the second table, which contains all editions
         // We can't parse the whole site as it contains errors and freaks out any parser
@@ -218,8 +218,8 @@ class ScanScreen extends Sprite
             _database.addEdition(edition);
 
             // Construct a checkbox for the edition
-            var checkbox :SVGCheckBox = new SVGCheckBox(Std.int(stage.stageWidth * 0.2), Std.int(stage.stageHeight * 0.04), 0.18, 
-                edition.getFullName(), _fontColor, _fontHoverColor, _font, 
+            var checkbox :SVGCheckBox = new SVGCheckBox(Std.int(stage.stageWidth * 0.2), Std.int(stage.stageHeight * 0.04), 0.18,
+                edition.getFullName(), _fontColor, _fontHoverColor, _font,
                 "svg/cb_grey_un_normal", "svg/cb_grey_un_hover", "svg/cb_grey_normal", "svg/cb_grey_hover");
             checkbox.addEventListener(MouseEvent.CLICK, handleCheckBoxClicked);
             _checkBoxes[checkbox] = edition;
@@ -234,7 +234,7 @@ class ScanScreen extends Sprite
     /**
      * Will take note of the edition to check/uncheck.
      */
-    private function handleCheckBoxClicked(p_event :MouseEvent) :Void 
+    private function handleCheckBoxClicked(p_event :MouseEvent) :Void
     {
         // Get the checkbox
         var checkbox :SVGCheckBox = null;
@@ -254,7 +254,7 @@ class ScanScreen extends Sprite
     /**
      * Will mark all editions to be downloaded.
      */
-    private function handleAllClick(p_event :MouseEvent) :Void 
+    private function handleAllClick(p_event :MouseEvent) :Void
     {
         for (cb in _checkBoxes.keys())
         {
@@ -266,7 +266,7 @@ class ScanScreen extends Sprite
     /**
      * Will mark all editions NOT to be downloaded.
      */
-    private function handleNoneClick(p_event :MouseEvent) :Void 
+    private function handleNoneClick(p_event :MouseEvent) :Void
     {
         for (cb in _checkBoxes.keys())
         {
@@ -278,7 +278,7 @@ class ScanScreen extends Sprite
     /**
      * Will invert the selection of each edition.
      */
-    private function handleInvertClick(p_event :MouseEvent) :Void 
+    private function handleInvertClick(p_event :MouseEvent) :Void
     {
         for (cb in _checkBoxes.keys())
         {
@@ -290,7 +290,7 @@ class ScanScreen extends Sprite
     /**
      * Will continue to the next step.
      */
-    private function handleOkClick(p_event :MouseEvent) :Void 
+    private function handleOkClick(p_event :MouseEvent) :Void
     {
         // Only proceed if any edition is selected
         for (edition in _checkBoxes)

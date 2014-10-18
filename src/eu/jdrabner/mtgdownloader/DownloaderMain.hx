@@ -1,5 +1,5 @@
 
-package eu.jdrabner.mtgDownloader;
+package eu.jdrabner.mtgdownloader;
 
 import flash.display.Sprite;
 import flash.events.Event;
