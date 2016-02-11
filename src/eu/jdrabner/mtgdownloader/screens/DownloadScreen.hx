@@ -107,7 +107,7 @@ class DownloadScreen extends Sprite
             var font :Font = Assets.getFont(_font);
             var textFormat :TextFormat = new TextFormat();
             textFormat.bold = true;
-            textFormat.size = stage.stageHeight * _relSize * 0.03;
+            textFormat.size = Std.int(stage.stageHeight * _relSize * 0.03);
             textFormat.font = font.fontName;
             textFormat.color = _fontColor;
 

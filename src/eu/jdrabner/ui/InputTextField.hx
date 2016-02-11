@@ -14,7 +14,7 @@ import flash.text.Font;
 import openfl.Assets;
 
 /**
- * A single-line input text field that has a fixed size and and a background. 
+ * A single-line input text field that has a fixed size and and a background.
  */
 class InputTextField extends Sprite
 {
@@ -23,7 +23,7 @@ class InputTextField extends Sprite
     public static inline var    INPUT_TYPE_TEXT     :Int = 2;
 
     public var id :Int = -1;
-    
+
     private var _background :Bitmap;
 
     private var _label   :TextField;
@@ -31,21 +31,21 @@ class InputTextField extends Sprite
 
     private var _type       :Int;
     private var _lastText   :String = "";
-    
+
     /**
      * Constructor.
      * @param  p_width         The width of the InputTextField (total, label + input).
      * @param  p_height        The height of the InputTextField.
      * @param  p_inputPart     The part of the width that is reserved for the input field. (0 .. 1)
-     * @param  p_bgColor       The color of the text field's background. 
+     * @param  p_bgColor       The color of the text field's background.
      * @param  p_bgColorBorder The color of the border of the text field's background.
-     * @param  p_type          The type of input. This is used to check the input for wrong characters. 
-     * @param  p_fontColor     The color of the font. 
-     * @param  p_fontName      The name of the font to use. 
+     * @param  p_type          The type of input. This is used to check the input for wrong characters.
+     * @param  p_fontColor     The color of the font.
+     * @param  p_fontName      The name of the font to use.
      * @param  p_caption       The label text left of the inout field.
-     * @param  p_defaultText   The starting text. Use htmlText at your own risk. 
+     * @param  p_defaultText   The starting text. Use htmlText at your own risk.
      */
-    public function new(p_width :Int, p_height :Int, p_inputPart :Float, p_bgColor :Int, p_bgColorBorder :Int, 
+    public function new(p_width :Int, p_height :Int, p_inputPart :Float, p_bgColor :Int, p_bgColorBorder :Int,
                         p_type :Int, p_fontColor :Int, p_fontName :String, p_caption :String, p_defaultText :String = "")
     {
         super();
@@ -56,7 +56,7 @@ class InputTextField extends Sprite
         var font :Font = Assets.getFont(p_fontName);
         var textFormat :TextFormat = new TextFormat();
         textFormat.bold = true;
-        textFormat.size = 0.5 * p_height;
+        textFormat.size = Std.int(0.5 * p_height);
         textFormat.font = font.fontName;
         textFormat.color = p_fontColor;
 
@@ -84,7 +84,7 @@ class InputTextField extends Sprite
         addChild(_background);
 
         // TextField
-        var format :TextFormat = new TextFormat(p_fontName, p_height * 0.7, p_fontColor, false);
+        var format :TextFormat = new TextFormat(p_fontName, Std.int(p_height * 0.7), p_fontColor, false);
         _text = new TextField();
         _text.multiline = false;
         _text.wordWrap = false;
@@ -110,8 +110,8 @@ class InputTextField extends Sprite
     }
 
     /**
-     * Sets the new text. 
-     * @NOTE: Does NOT perform any type checks. 
+     * Sets the new text.
+     * @NOTE: Does NOT perform any type checks.
      */
     public function setText(p_text :String) :Void
     {
@@ -119,7 +119,7 @@ class InputTextField extends Sprite
     }
 
     /**
-     * @return The current text. 
+     * @return The current text.
      */
     public function getText() :String
     {
@@ -127,7 +127,7 @@ class InputTextField extends Sprite
     }
 
     /**
-     * Will check the input for correct format and dispatch a change event. 
+     * Will check the input for correct format and dispatch a change event.
      */
     private function handleTextInput2(p_event :Event) :Void
     {
@@ -135,12 +135,12 @@ class InputTextField extends Sprite
     }
 
     /**
-     * Will check the input for correct format and dispatch a change event. 
+     * Will check the input for correct format and dispatch a change event.
      */
     private function handleTextInput(p_event :TextEvent) :Void
     {
         // Check input for correct format
-        switch (_type) 
+        switch (_type)
         {
             case INPUT_TYPE_INT:
                 var reg :EReg = ~/[^0-9]+/;

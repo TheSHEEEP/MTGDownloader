@@ -34,9 +34,9 @@ class DownloadDisplay extends Sprite
      * Constructor.
      * @param  p_width     The target width of the display. In pixels.
      * @param  p_height    The target width of the display. In pixels.
-     * @param  p_fontName  The font name,   
+     * @param  p_fontName  The font name,
      * @param  p_fontColor The font color.
-     * @param  p_fillColor The filling color of the progress bar.                                              
+     * @param  p_fillColor The filling color of the progress bar.
      * @param  p_job       The job to track. May be null to be set later.
      */
     public function new(p_width :Float, p_height :Float, p_fontName :String, p_fontColor :Int, p_fillColor :Int,
@@ -59,7 +59,7 @@ class DownloadDisplay extends Sprite
     /**
      * Initializes the display.
      */
-    private function init(p_event :Event) :Void 
+    private function init(p_event :Event) :Void
     {
         // Create UI elements
         if (_label == null)
@@ -68,7 +68,7 @@ class DownloadDisplay extends Sprite
             var font :Font = Assets.getFont(_font);
             var textFormat :TextFormat = new TextFormat();
             textFormat.bold = true;
-            textFormat.size = _targetHeight * 0.4;
+            textFormat.size = Std.int(_targetHeight * 0.4);
             textFormat.font = font.fontName;
             textFormat.color = _fontColor;
             _label = new TextField();
@@ -94,13 +94,13 @@ class DownloadDisplay extends Sprite
 
         // Position progress bar
         _progressBar.y = 0.68 * _targetHeight;
-        
+
     }
-    
+
     /**
      * @param p_job The DownloadJob to track.
      */
-    public function setDownloadJob(p_job :DownloadJob) :Void 
+    public function setDownloadJob(p_job :DownloadJob) :Void
     {
         // Unregister old one
         if (_job != null)
@@ -126,7 +126,7 @@ class DownloadDisplay extends Sprite
     /**
      * Updates the label.
      */
-    private function updateLabel() :Void 
+    private function updateLabel() :Void
     {
         if (_label != null)
         {
@@ -150,16 +150,16 @@ class DownloadDisplay extends Sprite
     /**
      * Will take note of the finished download.
      */
-    private function handleJobDone(p_event :Event) :Void 
+    private function handleJobDone(p_event :Event) :Void
     {
         var job :DownloadJob = cast p_event.target;
         job.removeEventListener(DownloadJob.DONE, handleJobDone);
-        
+
         // Wait 0.25 seconds before setting the display to idle (so that the user can see 100% progress bar)
         TweenX.to(this, {alpha : 1.0} ).time(0.25).onFinish(setIsIdleTrue);
     }
 
-    private function setIsIdleTrue() :Void 
+    private function setIsIdleTrue() :Void
     {
         setIsIdle(true);
     }
@@ -167,7 +167,7 @@ class DownloadDisplay extends Sprite
     /**
      * @param p_idle If this display will count as idle or not.
      */
-    public function setIsIdle(p_idle :Bool) :Void 
+    public function setIsIdle(p_idle :Bool) :Void
     {
         _downloading = !p_idle;
     }
@@ -175,7 +175,7 @@ class DownloadDisplay extends Sprite
     /**
      * @return True if this download display can currently take a new download to display.
      */
-    public function getIsIdle() :Bool 
+    public function getIsIdle() :Bool
     {
         return !_downloading;
     }

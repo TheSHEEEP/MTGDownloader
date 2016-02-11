@@ -70,7 +70,7 @@ class TitleBar extends Sprite
         graphics.endFill();
 
         // Initialize text field
-        _textFormat.size = stage.stageHeight * _relSize * _relSizeFont;
+        _textFormat.size = Std.int(stage.stageHeight * _relSize * _relSizeFont);
         _title.defaultTextFormat = _textFormat;
         _title.text = _title.text;
         _title.height = _title.textHeight;
@@ -85,7 +85,7 @@ class TitleBar extends Sprite
     /**
      * @param p_text  The new text of the title bar.
      */
-    public function setTitleText(p_text :String) :Void 
+    public function setTitleText(p_text :String) :Void
     {
         _title.text = p_text;
         _title.width = _title.textWidth;

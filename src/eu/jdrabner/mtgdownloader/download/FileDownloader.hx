@@ -51,6 +51,7 @@ class FileDownloader extends flash.events.EventDispatcher
         _loader.addEventListener(ProgressEvent.PROGRESS, progressHandler);
         _loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
         _loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+        //_loader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, httpResponseHandler);
         _loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
     }
 
@@ -67,8 +68,7 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     public function startDownload() :Void 
     {
-        var request :URLRequest = new URLRequest(_url);
-        _loader.load(request);
+        _loader.load(new URLRequest(_url));
     }
 
     /**
@@ -135,7 +135,16 @@ class FileDownloader extends flash.events.EventDispatcher
      */
     private function httpStatusHandler(p_event :HTTPStatusEvent) :Void 
     {
+        // It's pretty spammy
         // trace("httpStatusHandler: " + p_event.toString());
+    }
+
+    /**
+     * HTTP status handling.
+     */
+    private function httpResponseHandler(p_event :HTTPStatusEvent) :Void 
+    {
+        trace("httpResponseHandler: " + p_event.toString());
     }
 
     /**

@@ -127,7 +127,7 @@ class ScanScreen extends Sprite
             var font :Font = Assets.getFont("fonts/OpenSans-Semibold.ttf");
             var textFormat :TextFormat = new TextFormat();
             textFormat.bold = true;
-            textFormat.size = stage.stageHeight * 0.05;
+            textFormat.size = Std.int(stage.stageHeight * 0.05);
             textFormat.font = font.fontName;
             textFormat.color = _fontColor;
 
@@ -165,8 +165,11 @@ class ScanScreen extends Sprite
     {
         // var downloader :FileDownloader = new FileDownloader("file://C:/Coding/GitHubRepos/MTGDownloader/sitemap.html");
         var downloader :FileDownloader = new FileDownloader("http://magiccards.info/sitemap.html", _progress);
+        trace("test");
+        //var downloader :FileDownloader = new FileDownloader("jksajklfs.dhsadfhj", _progress);
         downloader.addEventListener(FileDownloader.DOWNLOAD_DONE, handleDownloadDone);
         downloader.startDownload();
+        trace("test 2");
     }
 
     /**

@@ -32,20 +32,20 @@ class SVGCheckBox extends Sprite
     private var _hoverLayer     :Bitmap;
 
     /**
-     * Constructor. Renders the passed SVG images and builds the final checkbox graphics. 
+     * Constructor. Renders the passed SVG images and builds the final checkbox graphics.
      * @NOTE    The clickable area assumes a rectangular image format.
-     * @param p_width           The target width of the whole checkbox (with label). 
-     * @param p_height          The target height of the whole checkbox (with label). 
+     * @param p_width           The target width of the whole checkbox (with label).
+     * @param p_height          The target height of the whole checkbox (with label).
      * @param p_buttonSpace     The percentage of the width the checkbox button shall have. (0 .. 1)
      * @param p_caption         The caption of the checkbox. Can be in HTML format.
      * @param p_fontColor       The color of the font.
      * @param p_font            The path to the font file.
-     * @param p_svgUnNormalName The name of the SVG image (WITHOUT ".svg") for the unchecked normal state. 
-     * @param p_svgUnHoverName  The name of the SVG image (WITHOUT ".svg") for the unchecked hover state. 
-     * @param p_svgNormalName   The name of the SVG image (WITHOUT ".svg") for the checked normal state. 
-     * @param p_svgHoverName    The name of the SVG image (WITHOUT ".svg") for the checked hover state. 
+     * @param p_svgUnNormalName The name of the SVG image (WITHOUT ".svg") for the unchecked normal state.
+     * @param p_svgUnHoverName  The name of the SVG image (WITHOUT ".svg") for the unchecked hover state.
+     * @param p_svgNormalName   The name of the SVG image (WITHOUT ".svg") for the checked normal state.
+     * @param p_svgHoverName    The name of the SVG image (WITHOUT ".svg") for the checked hover state.
      * */
-    public function new(p_width :Int, p_height :Int, p_buttonSpace :Float, p_caption :String, 
+    public function new(p_width :Int, p_height :Int, p_buttonSpace :Float, p_caption :String,
         p_fontColor :Int, p_fontHoverColor :Int, p_font :String,
         p_svgUnNormalName :String, p_svgUnHoverName :String, p_svgNormalName :String, p_svgHoverName :String)
     {
@@ -115,8 +115,8 @@ class SVGCheckBox extends Sprite
         _caption.mouseEnabled = false;
         _caption.width = p_width * (1.0 - p_buttonSpace - 0.06);
         _caption.x = p_width * (p_buttonSpace + 0.06);
-        var font :flash.text.Font = Assets.getFont(p_font); 
-        var format :TextFormat = new TextFormat(font.fontName, p_height * 0.45, p_fontColor, true, false);
+        var font :flash.text.Font = Assets.getFont(p_font);
+        var format :TextFormat = new TextFormat(font.fontName, Std.int(p_height * 0.45), p_fontColor, true, false);
         format.align = flash.text.TextFormatAlign.LEFT;
         _caption.setTextFormat(format);
         _caption.defaultTextFormat = format;
@@ -126,7 +126,7 @@ class SVGCheckBox extends Sprite
             _caption.height = _caption.textHeight * 1.03;
             _caption.y = 0.04 * p_height + (0.92 * p_height) / 2 - _caption.height / 2;
         #else
-            // Flash's textHeight is even more off when there are multiple lines... 
+            // Flash's textHeight is even more off when there are multiple lines...
             _caption.height = _caption.textHeight * _caption.numLines;
             _caption.y = (0.92 * p_height) / 2 - _caption.height / 4 - 0.05 * p_height;
         #end
@@ -134,7 +134,7 @@ class SVGCheckBox extends Sprite
     }
 
     /**
-     * Sets the new caption. 
+     * Sets the new caption.
      * */
     public function setCaption(p_caption :String) :Void
     {
@@ -152,7 +152,7 @@ class SVGCheckBox extends Sprite
     /**
      * @param p_checked If the box should be checked or not.
      */
-    public function setChecked(p_checked :Bool) :Void 
+    public function setChecked(p_checked :Bool) :Void
     {
         _checked = p_checked;
 
@@ -223,7 +223,7 @@ class SVGCheckBox extends Sprite
 
 
     /**
-     * Shows clicked effect for some time. 
+     * Shows clicked effect for some time.
      * */
     private function handleMouseClick(p_mouseEvent :MouseEvent) :Void
     {
