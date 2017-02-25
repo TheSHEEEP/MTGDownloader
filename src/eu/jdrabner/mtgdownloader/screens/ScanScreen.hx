@@ -247,7 +247,7 @@ class ScanScreen extends Sprite
         }
         else
         {
-            checkbox = cast p_event.target.parent;
+            checkbox = cast cast (p_event.target, Sprite).parent;
         }
 
         // Apply checked/unchecked

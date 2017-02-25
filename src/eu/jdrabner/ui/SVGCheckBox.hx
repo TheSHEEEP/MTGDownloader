@@ -199,7 +199,7 @@ class SVGCheckBox extends Sprite
         var textFormat :TextFormat = _caption.defaultTextFormat;
         textFormat.color = _fontHoverColor;
         _caption.htmlText = text;
-        _caption.setTextFormat(textFormat);
+        _caption.setTextFormat(textFormat, 0, text.length);
     }
 
     /**
@@ -218,7 +218,7 @@ class SVGCheckBox extends Sprite
         var textFormat :TextFormat = _caption.defaultTextFormat;
         textFormat.color = _fontColor;
         _caption.htmlText = text;
-        _caption.setTextFormat(textFormat);
+        _caption.setTextFormat(textFormat, 0, text.length);
     }
 
 

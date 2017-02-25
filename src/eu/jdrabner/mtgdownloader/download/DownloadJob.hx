@@ -10,7 +10,7 @@ import eu.jdrabner.mtgdownloader.data.Edition;
 /**
  * This class manages one download job, including the whole download and file creation.
  */
-class DownloadJob extends EventDispatcher 
+class DownloadJob extends EventDispatcher
 {
     public static inline var     DONE :String = "Done!";
 
@@ -70,7 +70,7 @@ class DownloadJob extends EventDispatcher
     /**
      * Will start the download.
      */
-    public function start() :Void 
+    public function start() :Void
     {
         _downloader.startDownload();
     }
@@ -80,9 +80,9 @@ class DownloadJob extends EventDispatcher
      */
     public function getFullDescription() :String
     {
-        if (_isCard) 
+        if (_isCard)
         {
-            return "Card:   " + _card.getFullName();
+            return "Card: " + _card.getEdition().getShortName() + ": " + _card.getFullName();
         }
         else
         {
@@ -108,14 +108,14 @@ class DownloadJob extends EventDispatcher
      */
     public function getSource() :Dynamic
     {
-        if (_isCard) 
+        if (_isCard)
         {
             return _card;
         }
         else
         {
             return _edition;
-        } 
+        }
         return null;
     }
 
@@ -130,7 +130,7 @@ class DownloadJob extends EventDispatcher
     /**
      * Will notify all listeners of the finished download.
      */
-    private function handleDownloadDone(p_event :Event) :Void 
+    private function handleDownloadDone(p_event :Event) :Void
     {
         dispatchEvent(new Event(DONE));
     }
