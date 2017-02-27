@@ -205,6 +205,10 @@ class DownloadScreen extends Sprite
         fullPath = StringTools.replace(fullPath, "\\", "/");
         fullPath = StringTools.replace(fullPath, "//", "/");
 
+        // This function should create complete path, recursively
+        FileSystem.createDirectory(fullPath);
+        return;
+        
         // Split into tokens
         var tokens :Array<String> = fullPath.split("/");
 
