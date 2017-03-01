@@ -7,7 +7,7 @@
     <!-- Window settings -->
     <window background="#000000" fps="30" />
     <section if="cpp">
-        <window antialiasing="4" width="1280" height="800"/>
+        <window antialiasing="4" width="1366" height="768"/>
     </section>
 
 	<source path="src" />

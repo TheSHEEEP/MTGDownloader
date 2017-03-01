@@ -60,6 +60,8 @@ class DownloadScreen extends Sprite
 
     private var _backBtn          :SVGTextButton;
 
+    private var _errordCards    :Array<Card>;
+
     /**
      * Constructor.
      * @param  p_database  The database to fill.
@@ -83,6 +85,7 @@ class DownloadScreen extends Sprite
 
         _displays = new Array<DownloadDisplay>();
         _waitingDownloads = new Array<Dynamic>();
+        _errordCards = new Array<Card>();
 
         addEventListener(Event.ADDED_TO_STAGE, init);
     }
@@ -208,7 +211,7 @@ class DownloadScreen extends Sprite
         // This function should create complete path, recursively
         FileSystem.createDirectory(fullPath);
         return;
-        
+
         // Split into tokens
         var tokens :Array<String> = fullPath.split("/");
 
@@ -244,6 +247,7 @@ class DownloadScreen extends Sprite
         // Create download job
         var job :DownloadJob = new DownloadJob(p_source);
         job.addEventListener(DownloadJob.DONE, handleJobDone);
+        job.addEventListener(DownloadJob.ERROR, handleJobError);
 
         // Try recycling an existing display
         for (display in _displays)
@@ -291,6 +295,7 @@ class DownloadScreen extends Sprite
     {
         var job :DownloadJob = cast p_event.target;
         job.removeEventListener(DownloadJob.DONE, handleJobDone);
+        job.removeEventListener(DownloadJob.ERROR, handleJobError);
 
         // If this was an edition, parse the HTML
         if (Std.is(job.getSource(), Edition))
@@ -315,6 +320,44 @@ class DownloadScreen extends Sprite
             storeCard(card, job.getData());
             _numCardsDL++;
         }
+        updateProgressDisplay();
+
+        // If we have waiting downloads, add those
+        while (_waitingDownloads.length > 0)
+        {
+            var source :Dynamic = _waitingDownloads[0];
+            _waitingDownloads.splice(0, 1);
+            if (!addDownload(source))
+            {
+                break;
+            }
+        }
+
+        // Are we done?
+        if (_numCardsDL >= _numCardsTotal && _numEditionsDL >= _numEditionsTotal)
+        {
+            trace("We are done!");
+            trace("Leftovers: " + _errordCards.length);
+        }
+    }
+
+    /**
+     * Will handle error'd downloads of an edition or a card.
+     */
+    private function handleJobError(p_event :Event) :Void
+    {
+        var job :DownloadJob = cast p_event.target;
+        job.removeEventListener(DownloadJob.DONE, handleJobDone);
+        job.removeEventListener(DownloadJob.ERROR, handleJobError);
+
+        // So far, errors only happened for cards (and only on linux)
+        if (Std.is(job.getSource(), Card))
+        {
+            var card :Card = cast job.getSource();
+            trace("Adding card to error'd ones: " + card.getFullName());
+            _errordCards.push(card);
+        }
+
         updateProgressDisplay();
 
         // If we have waiting downloads, add those
@@ -364,7 +407,15 @@ class DownloadScreen extends Sprite
         fullPath += DownloadSettings.prefix + cardName + DownloadSettings.postfix + ".jpg";
 
         // Create file object
-        var file :FileOutput = File.write(fullPath, true);
+        var file :FileOutput = null;
+        try {
+            file = File.write(fullPath, true);
+        } catch( error : Dynamic ) {
+            trace("Error : " + error);
+            trace("Will try again after done with the rest.");
+            _errordCards.push(p_card);
+            return;
+        }
 
         // Store image bytes
         var bytes :ByteArray = cast p_data;

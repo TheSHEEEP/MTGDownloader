@@ -14,7 +14,8 @@ import eu.jdrabner.ui.ProgressBar;
 
 class FileDownloader extends flash.events.EventDispatcher
 {
-    public static inline var         DOWNLOAD_DONE :String = "Download_Done";
+    public static inline var         DOWNLOAD_DONE  :String = "Download_Done";
+    public static inline var         DOWNLOAD_ERROR :String = "Download_Error";
 
     private var _loader      :URLLoader;
     private var _url         :String;
@@ -25,7 +26,7 @@ class FileDownloader extends flash.events.EventDispatcher
      * @param  p_url The URL to download.
      * @param  p_bar (Optional) The prograss bar to keep updated about the progress.
      */
-    public function new(p_url :String, p_bar :ProgressBar = null) 
+    public function new(p_url :String, p_bar :ProgressBar = null)
     {
         super();
 
@@ -44,7 +45,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * Configure the listeners for the download.
      */
-    private function configureListeners() :Void 
+    private function configureListeners() :Void
     {
         _loader.addEventListener(Event.COMPLETE, completeHandler);
         _loader.addEventListener(Event.OPEN, openHandler);
@@ -58,7 +59,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * @param p_bar :ProgressBar The new progress bar the downloader will update.
      */
-    public function setProgressBar(p_bar :ProgressBar) :Void 
+    public function setProgressBar(p_bar :ProgressBar) :Void
     {
         _progressBar = p_bar;
     }
@@ -66,7 +67,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * Starts the download.
      */
-    public function startDownload() :Void 
+    public function startDownload() :Void
     {
         _loader.load(new URLRequest(_url));
     }
@@ -82,7 +83,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * Download complete!
      */
-    private function completeHandler(p_event :Event) :Void 
+    private function completeHandler(p_event :Event) :Void
     {
         if (_progressBar != null)
         {
@@ -105,7 +106,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * Open handling.
      */
-    private function openHandler(p_event :Event) :Void 
+    private function openHandler(p_event :Event) :Void
     {
         trace("openHandler: " + p_event.toString());
     }
@@ -113,7 +114,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * Progress handling.
      */
-    private function progressHandler(p_event :ProgressEvent) :Void 
+    private function progressHandler(p_event :ProgressEvent) :Void
     {
         if (_progressBar != null)
         {
@@ -125,7 +126,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * Security Error handling.
      */
-    private function securityErrorHandler(p_event :SecurityErrorEvent) :Void 
+    private function securityErrorHandler(p_event :SecurityErrorEvent) :Void
     {
         trace("securityErrorHandler: " + p_event.text);
     }
@@ -133,7 +134,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * HTTP status handling.
      */
-    private function httpStatusHandler(p_event :HTTPStatusEvent) :Void 
+    private function httpStatusHandler(p_event :HTTPStatusEvent) :Void
     {
         // It's pretty spammy
         // trace("httpStatusHandler: " + p_event.toString());
@@ -142,7 +143,7 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * HTTP status handling.
      */
-    private function httpResponseHandler(p_event :HTTPStatusEvent) :Void 
+    private function httpResponseHandler(p_event :HTTPStatusEvent) :Void
     {
         trace("httpResponseHandler: " + p_event.toString());
     }
@@ -150,8 +151,24 @@ class FileDownloader extends flash.events.EventDispatcher
     /**
      * IO Error handling.
      */
-    private function ioErrorHandler(p_event :IOErrorEvent) :Void 
+    private function ioErrorHandler(p_event :IOErrorEvent) :Void
     {
-        trace("ioErrorHandler: " + p_event.text + " for URL: " + _url);
+        trace("ioErrorHandler: " + p_event.toString() + " for URL: " + _url);
+        if (_progressBar != null)
+        {
+            _progressBar.update(1.0);
+            _progressBar = null;
+        }
+
+        // Remove all listeners
+        _loader.removeEventListener(Event.COMPLETE, completeHandler);
+        _loader.removeEventListener(Event.OPEN, openHandler);
+        _loader.removeEventListener(ProgressEvent.PROGRESS, progressHandler);
+        _loader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+        _loader.removeEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+        _loader.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+
+        // Dispatch event
+        dispatchEvent(new Event(DOWNLOAD_ERROR));
     }
 }

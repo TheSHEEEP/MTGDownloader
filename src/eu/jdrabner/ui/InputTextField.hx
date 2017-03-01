@@ -126,6 +126,15 @@ class InputTextField extends Sprite
         return _text.text;
     }
 
+    public function setTextSize(size :Int) :Void
+    {
+        var format :TextFormat = _text.defaultTextFormat;
+        format.size = size;
+        _text.defaultTextFormat = format;
+        _text.setTextFormat(format, 0, _text.length);
+        _text.y = height * 0.5 - size;
+    }
+
     /**
      * Will check the input for correct format and dispatch a change event.
      */

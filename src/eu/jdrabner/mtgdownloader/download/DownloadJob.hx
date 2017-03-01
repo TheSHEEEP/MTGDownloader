@@ -13,6 +13,7 @@ import eu.jdrabner.mtgdownloader.data.Edition;
 class DownloadJob extends EventDispatcher
 {
     public static inline var     DONE :String = "Done!";
+    public static inline var     ERROR :String = "Error!";
 
     private var _isCard       :Bool = false;
     private var _card         :Card;
@@ -65,6 +66,7 @@ class DownloadJob extends EventDispatcher
         }
         _downloader = new FileDownloader(url, _progressBar);
         _downloader.addEventListener(FileDownloader.DOWNLOAD_DONE, handleDownloadDone);
+        _downloader.addEventListener(FileDownloader.DOWNLOAD_ERROR, handleDownloadError);
     }
 
     /**
@@ -133,5 +135,13 @@ class DownloadJob extends EventDispatcher
     private function handleDownloadDone(p_event :Event) :Void
     {
         dispatchEvent(new Event(DONE));
+    }
+
+    /**
+     * Will notify all listeners of the error'd download.
+     */
+    private function handleDownloadError(p_event :Event) :Void
+    {
+        dispatchEvent(new Event(ERROR));
     }
 }

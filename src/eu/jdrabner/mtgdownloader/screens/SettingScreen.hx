@@ -122,6 +122,7 @@ class SettingScreen extends Sprite
             _targetFolder = new InputTextField(Std.int(0.5 * stage.stageWidth), Std.int(0.04 * stage.stageHeight), 0.7,
                 bgColor.toInt(), bgBorderColor.toInt(), InputTextField.INPUT_TYPE_TEXT, _fontColor, _font,
                 "Target folder:", "C:/magiccards");
+            _targetFolder.setTextSize(12);
             addChild(_targetFolder);
 
             // Back

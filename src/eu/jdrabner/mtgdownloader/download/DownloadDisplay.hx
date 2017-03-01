@@ -106,6 +106,7 @@ class DownloadDisplay extends Sprite
         if (_job != null)
         {
             _job.removeEventListener(DownloadJob.DONE, handleJobDone);
+            _job.removeEventListener(DownloadJob.ERROR, handleJobDone);
         }
 
         // Register new job
@@ -113,6 +114,7 @@ class DownloadDisplay extends Sprite
         {
             _job = p_job;
             _job.addEventListener(DownloadJob.DONE, handleJobDone);
+            _job.addEventListener(DownloadJob.ERROR, handleJobDone);
             if (_progressBar != null)
             {
                 _job.setProgressBar(_progressBar);
@@ -154,6 +156,7 @@ class DownloadDisplay extends Sprite
     {
         var job :DownloadJob = cast p_event.target;
         job.removeEventListener(DownloadJob.DONE, handleJobDone);
+        job.removeEventListener(DownloadJob.ERROR, handleJobDone);
 
         // Wait 0.25 seconds before setting the display to idle (so that the user can see 100% progress bar)
         TweenX.to(this, {alpha : 1.0} ).time(0.25).onFinish(setIsIdleTrue);
